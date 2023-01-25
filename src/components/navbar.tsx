@@ -1,8 +1,6 @@
-import Button from './button';
-import React from 'react';
+import Button from "./Button";
 
 function Navbar() {
-  
   return (
     <div className="navbar">
         <img src=".../public/KMP.png" className="App-logo" alt="kmp logo" />

@@ -2,7 +2,7 @@ type PostProps = {
   text: string;
 }; 
 
-function postContent({ text }: PostProps) {
+function PostContent({ text }: PostProps) {
     return (
       <div className="postContent">
         <p>{text}</p>
@@ -10,4 +10,4 @@ function postContent({ text }: PostProps) {
     );
   }
   
-  export default postContent;
+  export default PostContent;

@@ -1,5 +1,5 @@
-import AccountIcon from './accounticon';
-import PostContent from './postcontent';
+import AccountIcon from "../Account/AccountIcon";
+import PostContent from "./PostContent";
 
 function Post() {
   return (
