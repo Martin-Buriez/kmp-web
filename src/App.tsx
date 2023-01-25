@@ -1,15 +1,14 @@
-import './App.scss';
+import React from 'react';
+import './App.css';
 import Navbar from './components/navbar';
 import Post from './components/post';
 
-function App() {
-  
+const App: React.FC = () => {
   return (
     <div className="App">
       <Navbar />
       <Post />
     </div>
-
   );
 }
 

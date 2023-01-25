@@ -1,3 +1,5 @@
+import React from 'react';
+
 function AccountIcon() {
   const author = "Jean Jacques"
   return (

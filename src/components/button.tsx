@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Button({name}) {
     const imgPath = `../public/logo-${name}.jpg` 
     const linkButton = ''

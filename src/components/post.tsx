@@ -1,6 +1,6 @@
 import AccountIcon from './accounticon';
 import PostContent from './postcontent';
-
+import React from 'react';
 
 function Post() {
   

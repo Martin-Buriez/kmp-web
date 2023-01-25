@@ -1,3 +1,5 @@
+import React from 'react';
+
 function postContent() {
     const text = "Bonjour le monde !"
     return (
@@ -8,4 +10,3 @@ function postContent() {
   }
   
   export default postContent;
-  
