@@ -1,11 +1,14 @@
 import React from 'react';
 
-function AccountIcon() {
-  const author = "Jean Jacques"
+type AccountIconProps = {
+  username: string;
+}; 
+
+function AccountIcon({ username }: AccountIconProps) {
   return (
     <div className="accountIcon">
-      <img src={`./${author}-profilepicture.png`} alt={`${author}`}/>
-      <p>{author}</p>
+      <img src={`./${username}-profilepicture.png`} alt={`${username}`}/>
+      <p>{username}</p>
     </div>
   );
 }

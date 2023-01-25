@@ -1,7 +1,8 @@
-import React from 'react';
+type PostProps = {
+  text: string;
+}; 
 
-function postContent() {
-    const text = "Bonjour le monde !"
+function postContent({ text }: PostProps) {
     return (
       <div className="postContent">
         <p>{text}</p>

@@ -1,9 +1,10 @@
-import React from 'react';
+type ButtonProps = {
+  name: string;
+}; 
 
-function Button({name}) {
-    const imgPath = `../public/logo-${name}.jpg` 
-    const linkButton = ''
-
+function Button({ name }: ButtonProps) {
+  const imgPath = `../public/logo-${name}.jpg` 
+  const linkButton = ''
   return (
     <div className={`button${name}`}>        
         <img src={imgPath} className="App-logo" alt={`${name} logo`} />
