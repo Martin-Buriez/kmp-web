@@ -4,6 +4,7 @@ import * as Yup from "yup";
 
 import IUser from "../../types/user.type";
 import { register } from "../../services/auth.service";
+import RegisterInput from "./RegisterInput";
 
 const Register: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
@@ -79,40 +80,13 @@ const Register: React.FC = () => {
           <Form>
             {!successful && (
               <div>
-                <div className="form-group">
-                  <label htmlFor="username"> Username </label>
-                  <Field name="username" type="text" className="form-control" />
-                  <ErrorMessage
-                    name="username"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email"> Email </label>
-                  <Field name="email" type="email" className="form-control" />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="password"> Password </label>
-                  <Field
-                    name="password"
-                    type="password"
-                    className="form-control"
-                  />
-                  <ErrorMessage
-                    name="password"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-
+                <RegisterInput name="name" type="string"/>
+                <RegisterInput name="lastName" type="string"/>
+                <RegisterInput name="birthday" type="date"/>
+                <RegisterInput name="email" type="string"/>
+                <RegisterInput name="address" type="strign"/>
+                <RegisterInput name="zipCode" type="strign"/>
+                <RegisterInput name="password" type="password"/>
                 <div className="form-group">
                   <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 </div>

@@ -13,5 +13,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-//  Testing github connexion with discord
