@@ -4,9 +4,14 @@ const API_URL = "http://localhost:8080/api/auth/";
 
 export const register = (name: string, lastName: string, birthday: string, address: string, zipCode: string, email: string, password: string) => {
   return axios.post(API_URL + 'register', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
     name, 
-    lastName, 
-    birthday, 
+    lastName,
+    birthday,  
     address, 
     zipCode, 
     email, 
@@ -17,6 +22,11 @@ export const register = (name: string, lastName: string, birthday: string, addre
 export const login = (email: string, password: string) => {
   return axios
     .post(API_URL + "login", {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
       email,
       password,
     })
@@ -36,6 +46,5 @@ export const logout = () => {
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
   if (userStr) return JSON.parse(userStr);
-
   return null;
 };

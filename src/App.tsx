@@ -3,11 +3,12 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Authentication/Login';
+import Register from './components/Authentication/Register';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Login />
+      <Register />
       <Navbar />
       <Home />
     </div>

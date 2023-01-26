@@ -14,7 +14,7 @@ const Register: React.FC = () => {
   const initialValues: UserType = {
     name: "",
     lastName: "",
-    birthday: "", 
+    birthday: "",
     address: "", 
     zipCode: "",
     email: "",
