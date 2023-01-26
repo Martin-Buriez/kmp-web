@@ -5,27 +5,34 @@ import * as Yup from "yup";
 import IUser from "../../types/user.type";
 import { register } from "../../services/auth.service";
 import RegisterInput from "./RegisterInput";
+import UserType from "../../types/user.type";
 
 const Register: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
-  const initialValues: IUser = {
-    username: "",
+  const initialValues: UserType = {
+    name: "",
+    lastName: "",
+    birthday: "", 
+    address: "", 
+    zipCode: "",
     email: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
       .test(
         "len",
-        "The username must be between 3 and 20 characters.",
+        "The name must be between 3 and 20 characters.",
         (val: any) =>
           val &&
           val.toString().length >= 3 &&
           val.toString().length <= 20
       )
+      .required("This field is required!"),
+    lastName: Yup.string()
       .required("This field is required!"),
     email: Yup.string()
       .email("This is not a valid email.")
@@ -43,9 +50,9 @@ const Register: React.FC = () => {
   });
 
   const handleRegister = (formValue: IUser) => {
-    const { username, email, password } = formValue;
+    const { name, lastName, birthday, address, zipCode, email, password } = formValue;
 
-    register(username, email, password).then(
+    register(name, lastName, birthday, address, zipCode, email, password).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
@@ -82,7 +89,7 @@ const Register: React.FC = () => {
               <div>
                 <RegisterInput name="name" type="string"/>
                 <RegisterInput name="lastName" type="string"/>
-                <RegisterInput name="birthday" type="date"/>
+                <RegisterInput name="birthday" type="string"/>
                 <RegisterInput name="email" type="string"/>
                 <RegisterInput name="address" type="strign"/>
                 <RegisterInput name="zipCode" type="strign"/>

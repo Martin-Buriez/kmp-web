@@ -2,18 +2,22 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
-export const register = (username: string, email: string, password: string) => {
-  return axios.post(API_URL + "signup", {
-    username,
-    email,
-    password,
+export const register = (name: string, lastName: string, birthday: string, address: string, zipCode: string, email: string, password: string) => {
+  return axios.post(API_URL + 'register', {
+    name, 
+    lastName, 
+    birthday, 
+    address, 
+    zipCode, 
+    email, 
+    password
   });
 };
 
-export const login = (username: string, password: string) => {
+export const login = (email: string, password: string) => {
   return axios
-    .post(API_URL + "signin", {
-      username,
+    .post(API_URL + "login", {
+      email,
       password,
     })
     .then((response) => {
