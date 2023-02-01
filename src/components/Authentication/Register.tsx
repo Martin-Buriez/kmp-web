@@ -6,6 +6,7 @@ import IUser from "../../types/user.type";
 import { register } from "../../services/auth.service";
 import RegisterInput from "./RegisterInput";
 import UserType from "../../types/user.type";
+import Navbar from "../Navbar";
 
 const Register: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
@@ -72,50 +73,53 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleRegister}
-        >
-          <Form>
-            {!successful && (
-              <div>
-                <RegisterInput name="name" type="string"/>
-                <RegisterInput name="lastName" type="string"/>
-                <RegisterInput name="birthday" type="string"/>
-                <RegisterInput name="email" type="string"/>
-                <RegisterInput name="address" type="strign"/>
-                <RegisterInput name="zipCode" type="strign"/>
-                <RegisterInput name="password" type="password"/>
+    <>
+      <Navbar />
+      <div className="col-md-12">
+        <div className="card card-container">
+          <img
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+            alt="profile-img"
+            className="profile-img-card"
+          />
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleRegister}
+          >
+            <Form>
+              {!successful && (
+                <div>
+                  <RegisterInput name="name" type="string"/>
+                  <RegisterInput name="lastName" type="string"/>
+                  <RegisterInput name="birthday" type="string"/>
+                  <RegisterInput name="email" type="string"/>
+                  <RegisterInput name="address" type="strign"/>
+                  <RegisterInput name="zipCode" type="strign"/>
+                  <RegisterInput name="password" type="password"/>
+                  <div className="form-group">
+                    <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                  </div>
+                </div>
+              )}
+  
+              {message && (
                 <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                  <div
+                    className={
+                      successful ? "alert alert-success" : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
                 </div>
-              </div>
-            )}
-
-            {message && (
-              <div className="form-group">
-                <div
-                  className={
-                    successful ? "alert alert-success" : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {message}
-                </div>
-              </div>
-            )}
-          </Form>
-        </Formik>
+              )}
+            </Form>
+          </Formik>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
