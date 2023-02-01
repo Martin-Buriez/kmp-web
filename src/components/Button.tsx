@@ -27,11 +27,10 @@ function logoName({ name }: ButtonProps){
 }
 
 function Button({ name }: ButtonProps) {
-  const imgPath = `../public/logo-${name}.jpg` 
   return (
     <div className={`button${name} align-center`}>        
         {logoName({name})}
-        <Link to={`/${name}`} className={`${name}_button`}>{name}</Link>
+        <Link to={`/${(name === "Home") ? "/" : name}`} className={`${name}_button`}>{name}</Link>
     </div>
   );
 }

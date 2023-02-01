@@ -1,24 +1,32 @@
-import React from "react";
-import { getCurrentUser } from "../../services/auth.service";
+import React, { useEffect } from "react";
+import { getUserInfos } from "../../services/user-service";
+import UserType from "../../types/user.type";
 import Navbar from "../Navbar";
 
 const Profile: React.FC = () => {
-  const currentUser = getCurrentUser();
-  console.log('currentUser', currentUser);
-
+  let currentUser: UserType = {
+    name: "",
+    lastName: "",
+    birthday: "",
+    address: "",
+    zipCode: "",
+    email: "",
+    password: ""
+  };
+  useEffect(() => {
+    currentUser = getUserInfos() as any;
+    console.log('currentUser', currentUser);
+  }, []);
+  
   return (
     <>
       <Navbar />
       <div className="container">
         <header className="jumbotron">
           <h3>
-            <strong>{currentUser.username}</strong> Profile
+            <strong>{currentUser.name}</strong> Profile
           </h3>
         </header>
-        <p>
-          <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-          {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-        </p>
         <p>
           <strong>Name:</strong> {currentUser.name}
         </p>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "http://127.0.0.1:8080/api/auth/";
 
 export const register = (name: string, lastName: string, birthday: string, address: string, zipCode: string, email: string, password: string) => {
   return axios.post(API_URL + 'register', {
@@ -46,6 +46,5 @@ export const logout = () => {
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
   if (userStr) return JSON.parse(userStr);
-  console.log(userStr, "userStr");
   return null;
 };
