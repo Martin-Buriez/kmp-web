@@ -1,22 +1,15 @@
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import React from "react"
 import { BrowserRouter } from "react-router-dom";
-
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-import React from 'react';
 import App from './App';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
-root.render(
+ReactDOM.render(
   <BrowserRouter>
     <head>
       <link href="/dist/output.css" rel="stylesheet"></link>
     </head>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
-reportWebVitals();
