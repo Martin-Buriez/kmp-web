@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { getUserInfos } from "../../services/user-service";
+import { getCurrentUserInfos } from "../../services/user.service";
 import UserType from "../../types/user.type";
 import Navbar from "../Navbar";
 
@@ -13,7 +13,7 @@ let Profile: React.FC = () => {
   }, []);
 
   const handleGetUser = React.useCallback(async () => {
-    setCurrentUser(await getUserInfos());
+    setCurrentUser(await getCurrentUserInfos());
   }, []);
 
   const { name, lastName, email, birthday, address, zipCode} = currentUser;
