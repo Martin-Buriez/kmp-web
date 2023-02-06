@@ -1,4 +1,5 @@
 export default interface UserType {
+  id: number,
   name: string,
   lastName: string,
   birthday: string,

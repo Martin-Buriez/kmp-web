@@ -16,11 +16,12 @@ const Register: React.FC = () => {
     name: "",
     lastName: "",
     birthday: "",
-    address: "", 
+    address: "",
     city: "",
     zipCode: "",
     email: "",
     password: "",
+    id: 0
   };
 
   const validationSchema = Yup.object().shape({

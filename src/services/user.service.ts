@@ -16,17 +16,30 @@ export const getUserBoard = () => {
 const API_URL = "http://localhost:8080/api/user";
 
 export const getCurrentUserInfos = (): Promise<UserType> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 'Authorization': 'Bearer ' + token }
-    };
-    return axios
-      .get((API_URL + "/actual"), (config))
-      .then((response) => {
-        JSON.stringify(response.data)
-        return response.data;
-      });
+  const token = getCurrentUser().accessToken;
+  const config = {
+    headers: { 'Authorization': 'Bearer ' + token }
   };
+  return axios
+    .get((API_URL + "/actual"), (config))
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    });
+};
+
+export const getUserInfosById = (userId: number): Promise<UserType> => {
+  const token = getCurrentUser().accessToken;
+  const config = {
+    headers: { 'Authorization': 'Bearer ' + token }
+  };
+  return axios
+    .get((API_URL + "/id/" + userId), (config))
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    });
+};
 
 export const getAllUsers = (): Promise<UserType[]> => {
   const token = getCurrentUser().accessToken;
