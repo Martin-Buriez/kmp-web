@@ -29,7 +29,7 @@ let Search: React.FC = () => {
                 <tbody>
                     {users && users.map(user =>
                       <tr key={user.name}>
-                            <td className="border border-slate-700">{user.lastName}</td>
+                            <td className="border border-slate-700"><a href={`users/${user.id}`}>{user.name}</a></td>
                             <td className="border border-slate-700">{user.lastName}</td>
                             <td className="border border-slate-700">{user.email}</td>
                             <td className="border border-slate-700">{user.zipCode}</td>
