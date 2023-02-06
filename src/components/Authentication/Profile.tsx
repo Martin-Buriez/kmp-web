@@ -1,49 +1,44 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { getUserInfos } from "../../services/user-service";
 import UserType from "../../types/user.type";
 import Navbar from "../Navbar";
 
-const Profile: React.FC = () => {
-  let currentUser: UserType = {
-    name: "",
-    lastName: "",
-    birthday: "",
-    address: "",
-    zipCode: "",
-    email: "",
-    password: ""
-  };
-  useEffect(() => {
-    currentUser = getUserInfos() as any;
-    console.log('currentUser', currentUser);
+let Profile: React.FC = () => {
+
+  let [currentUser, setCurrentUser] = React.useState<UserType>({} as UserType);
+
+  useEffect(()=> {
+    handleGetUser();
   }, []);
-  
+
+  const handleGetUser = React.useCallback(async () => {
+    setCurrentUser(await getUserInfos());
+  }, []);
+
+  const { name, lastName, email, birthday, address, zipCode} = currentUser;
+
   return (
     <>
       <Navbar />
       <div className="container">
-        <header className="jumbotron">
-          <h3>
-            <strong>{currentUser.name}</strong> Profile
-          </h3>
-        </header>
         <p>
-          <strong>Name:</strong> {currentUser.name}
+          <strong>Name:</strong> {name? name : "Not available"}
         </p>
         <p>
-          <strong>LastName:</strong> {currentUser.lastName}
+          <strong>LastName:</strong> {lastName? lastName : "Not available"}
         </p>
         <p>
-          <strong>Email:</strong> {currentUser.email}
+          <strong>Email:</strong> {email? email : "Not available"}
         </p>
         <p>
-          <strong>Birthday:</strong> {currentUser.birthday}
+          <strong>Birthday:</strong> {birthday? birthday : "Not available"}
         </p>
         <p>
-          <strong>Adress:</strong> {currentUser.address}
+          <strong>Adress:</strong> {address? address : "Not available"}
         </p>
         <p>
-          <strong>ZipCode:</strong> {currentUser.zipCode}
+          <strong>ZipCode:</strong> {zipCode? zipCode : "Not available"}
         </p>
       </div>
     </>

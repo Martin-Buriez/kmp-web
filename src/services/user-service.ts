@@ -13,7 +13,6 @@ export const getUserInfos = (): Promise<UserType> => {
       .get((API_URL + "/actual"), (config))
       .then((response) => {
         JSON.stringify(response.data)
-        console.log(response.data, "response.data");
         return response.data;
       });
   };

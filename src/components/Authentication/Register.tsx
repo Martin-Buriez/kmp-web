@@ -17,6 +17,7 @@ const Register: React.FC = () => {
     lastName: "",
     birthday: "",
     address: "", 
+    city: "",
     zipCode: "",
     email: "",
     password: "",
@@ -51,9 +52,9 @@ const Register: React.FC = () => {
   });
 
   const handleRegister = (formValue: IUser) => {
-    const { name, lastName, birthday, address, zipCode, email, password } = formValue;
+    const { name, lastName, birthday, address, city, zipCode, email, password } = formValue;
 
-    register(name, lastName, birthday, address, zipCode, email, password).then(
+    register(name, lastName, birthday, address, city, zipCode, email, password).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
@@ -94,7 +95,8 @@ const Register: React.FC = () => {
                   <RegisterInput name="lastName" type="string"/>
                   <RegisterInput name="birthday" type="string"/>
                   <RegisterInput name="email" type="string"/>
-                  <RegisterInput name="address" type="strign"/>
+                  <RegisterInput name="address" type="string"/>
+                  <RegisterInput name="city" type="string"/>
                   <RegisterInput name="zipCode" type="strign"/>
                   <RegisterInput name="password" type="password"/>
                   <div className="form-group">
