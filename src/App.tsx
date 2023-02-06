@@ -6,6 +6,7 @@ import Register from './components/Authentication/Register';
 import { Route, Routes } from 'react-router-dom'
 import Profile from './components/Authentication/Profile';
 import Post from './components/Posts/Post';
+import Search from './components/Search';
 
 const App: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const App: React.FC = () => {
         <Route path='/login' element={<Login/>} />
         <Route path='/account' element={<Profile/>} />
         <Route path='/posts' element={<Post/>} />
-        <Route path='/search' element={<Post/>} />
+        <Route path='/search' element={<Search/>} />
       </Routes>
     </>
   );

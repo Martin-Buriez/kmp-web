@@ -11,7 +11,7 @@ ReactDOM.render(
   </head>
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
       <head>
       <link href="/dist/output.css" rel="stylesheet"></link>
     </head>
