@@ -1,4 +1,4 @@
-import { logout } from "../services/auth.service";
+import { getCurrentUser, logout } from "../services/auth.service";
 import Button from "./Button";
 
 function Navbar() {
@@ -9,10 +9,16 @@ function Navbar() {
           <Button name="Home" />
           <Button name="Account" />
           <Button name="Search" />
-          <Button name="Login" />
-          <Button name="Register" />
           <Button name="Post" />
-          <a onClick={logout} href="/">Logout</a>
+          {!getCurrentUser() && (
+            <>
+            <Button name="Login" />
+            <Button name="Register" />
+            </>
+          )}
+          {getCurrentUser() && (
+            <a onClick={logout} href="/">Logout</a>
+          )}
         </div>
     </div>
   );
