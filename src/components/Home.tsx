@@ -1,11 +1,11 @@
 import Navbar from "./Navbar";
-import Post from "./Posts/Post";
+import PostList from "./Posts/PostList";
 
 function Home() {
   return (
     <div className="home">
         <Navbar />
-        <Post />
+        <PostList />
     </div>
   );
 }
