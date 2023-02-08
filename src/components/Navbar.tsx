@@ -11,6 +11,7 @@ function Navbar() {
           <Button name="Search" />
           <Button name="Login" />
           <Button name="Register" />
+          <Button name="Post" />
           <a onClick={logout} href="/">Logout</a>
         </div>
     </div>
