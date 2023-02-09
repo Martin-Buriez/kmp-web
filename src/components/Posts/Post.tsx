@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { getRessourceById, deleteRessource, putRessource } from "../../services/ressources.service";
 import PostType from "../../types/post.type";
 import Navbar from "../Navbar";
+import Comment from "../Comments/Comment";
+import CommentList from "../Comments/CommentsList";
 
 let Post: React.FC = () => {
 
@@ -10,17 +12,6 @@ let Post: React.FC = () => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
-  
-    const initialValues: {
-      catalogId: number;
-      access: string;
-      content: string;
-    } = {
-      catalogId: 0,
-      access: '',
-      content: '',
-    };
-  
 
     let url = window.location.pathname;
     let postId = parseInt(url.substring(url.lastIndexOf('/') + 1));
@@ -69,6 +60,16 @@ let Post: React.FC = () => {
     }, []);
 
     const { id, access, value, comments } = postById;
+
+    const initialValues: {
+      catalogId: number;
+      access: string;
+      content: string;
+    } = {
+      catalogId: id,
+      access: access,
+      content: value,
+    };
 
     return (
       <>
@@ -150,6 +151,8 @@ let Post: React.FC = () => {
           </div>
         </div>
         )}
+        <CommentList/>
+        <Comment/>
       </>
     );
 };
