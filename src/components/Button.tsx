@@ -5,6 +5,7 @@ import { AiOutlineSearch, AiFillHome } from "react-icons/ai";
 import { BsQuestionDiamond } from "react-icons/bs";
 import { MdAccountBox } from "react-icons/md";
 import { IoCreateOutline } from "react-icons/io5";
+import { GrCatalog } from "react-icons/gr";
 
 type ButtonProps = {
   name: string;
@@ -24,6 +25,8 @@ function logoName({ name }: ButtonProps){
       return <AiFillHome />;
     case "Post":
       return <IoCreateOutline/>;
+      case "Catalogue":
+        return <GrCatalog/>;
     default:
       return <BsQuestionDiamond />;
   }

@@ -4,7 +4,6 @@ import PostList from "./Posts/PostList";
 function Home() {
   return (
     <div className="home">
-        <Navbar />
         <PostList />
     </div>
   );

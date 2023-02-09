@@ -10,6 +10,9 @@ import Search from './components/Search';
 import User from './components/Account/User';
 import CreateNewPost from './components/Posts/CreateNewPost';
 import Post from './components/Posts/Post';
+import Catalogue from './components/Catalogue/Catalogue';
+import CreateNewCatalogue from './components/Catalogue/CreateNewCatalogue';
+import CatalogueList from './components/Catalogue/CatalogueList';
 
 const App: React.FC = () => {
   return (
@@ -19,11 +22,14 @@ const App: React.FC = () => {
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/account' element={<Profile/>} />
-        <Route path='/post' element={<CreateNewPost/>} />
-        <Route path='/posts/:id' element={<Post/>} />
-        <Route path='/posts/add' element={<PostList/>} />
+        <Route path='/post/add' element={<CreateNewPost/>} />
+        <Route path='/post/:id' element={<Post/>} />
+        <Route path='/post' element={<PostList/>} />
         <Route path='/search' element={<Search/>} />
         <Route path='/users/:id' element={<User/>} />
+        <Route path='/catalogue/add' element={<CreateNewCatalogue/>} />
+        <Route path='/catalogue/:id' element={<Catalogue/>} />
+        <Route path='/catalogue' element={<CatalogueList/>} />
         <Route path='*' element={<h1>404: Not Found</h1>} />
       </Routes>
     </>

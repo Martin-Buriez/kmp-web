@@ -10,6 +10,7 @@ function Navbar() {
           <Button name="Account" />
           <Button name="Search" />
           <Button name="Post" />
+          <Button name="Catalogue" />
           {!getCurrentUser() && (
             <>
             <Button name="Login" />

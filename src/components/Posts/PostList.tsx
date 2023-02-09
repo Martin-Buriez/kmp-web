@@ -20,6 +20,7 @@ let PostList: React.FC = () => {
   }, []);
   return (
     <>
+      <Navbar/>
       <table className="border-collapse border border-slate-500">
                 <thead>
                     <tr>
@@ -32,7 +33,7 @@ let PostList: React.FC = () => {
                 <tbody>
                     {posts && posts.content.map(post =>
                       <tr key={post.id}>
-                            <td className="border border-slate-700"><a href={`posts/${post.id}`}>{post.id}</a></td>
+                            <td className="border border-slate-700"><a href={`post/${post.id}`}>{post.id}</a></td>
                             <td className="border border-slate-700">{post.value}</td>
                             <td className="border border-slate-700">{post.id}</td>
                             <td className="border border-slate-700">{post.access}</td>
