@@ -14,7 +14,7 @@ export default interface PostListType {
     pageSize: number,
     totalElements: number,
     totalPages: number,
-  }
+}
 
 export default interface PostType {
     id: number,
