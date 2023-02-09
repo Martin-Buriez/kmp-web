@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-
-import { login } from "../../services/auth.service";
 import Navbar from "../Navbar";
 import { postCatalogue } from "../../services/catalogues.service";
 
@@ -74,7 +71,7 @@ const Login: React.FC<Props> = () => {
                   <span>Create Category</span>
                 </button>
               </div>
-                  
+
               {message && (
                 <div className="form-group">
                   <div className="alert alert-danger" role="alert">

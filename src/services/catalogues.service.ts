@@ -52,3 +52,26 @@ export const postCatalogue = async (category: string): Promise<any> => {
     throw error;
   }
 };
+
+export const putCatalogue = async (catalogueid: number, category: string): Promise<any> => { 
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "category": category };
+  try {
+    const response = await axios.put((API_URL + "/" + catalogueid), data, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const deleteCatalogue = async (catalogueid: number): Promise<any> => { 
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  try {
+    const response = await axios.delete((API_URL + "/" + catalogueid), { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
