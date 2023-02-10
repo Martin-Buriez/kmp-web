@@ -14,6 +14,8 @@ import Catalogue from './components/Catalogue/Catalogue';
 import CreateNewCatalogue from './components/Catalogue/CreateNewCatalogue';
 import CatalogueList from './components/Catalogue/CatalogueList';
 import Comment from "./components/Comments/Comment";
+import FriendRequestList from './components/Friends/AllRequestFriend';
+
 
 
 const App: React.FC = () => {
@@ -24,6 +26,7 @@ const App: React.FC = () => {
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/account' element={<Profile/>} />
+        <Route path='/friends' element={<FriendRequestList/>} />
         <Route path='/post/add' element={<CreateNewPost/>} />
         <Route path='/post/:id' element={<Post/>} />
         <Route path='/post' element={<PostList/>} />

@@ -1,7 +1,5 @@
 import axios from "axios";
 import CommentListType from "../types/comment.type";
-import PostListType from "../types/post.type";
-import PostType from "../types/post.type";
 import { getCurrentUser } from "./auth.service";
 
 const API_URL = "http://localhost:8080/api/resource";

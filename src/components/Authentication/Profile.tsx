@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { getCurrentUserInfos } from "../../services/user.service";
 import UserType from "../../types/user.type";
+import FriendsList from "../Friends/FriendsList";
+import FriendsRequestList from "../Friends/FriendsRequestList";
 import Navbar from "../Navbar";
 
 let Profile: React.FC = () => {
@@ -41,6 +43,8 @@ let Profile: React.FC = () => {
           <strong>ZipCode:</strong> {zipCode? zipCode : "Not available"}
         </p>
       </div>
+      <FriendsRequestList/>
+      <FriendsList/>
     </>
   );
 };
