@@ -51,8 +51,11 @@ export const putCommentByRessourceIdAndByCommentId = async (ressouceId: number, 
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Authorization': `Bearer ${token}` 
     }  };
+  const data = {
+    "value": value
+  }
   return axios
-    .post((API_URL + "/" + ressouceId + "/comments/" + commentId), value, (config))
+    .put((API_URL + "/" + ressouceId + "/comments/" + commentId), data, (config))
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;

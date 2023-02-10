@@ -1,10 +1,6 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import React, { useEffect } from "react";
 import { getCommentByRessourceIdAndByCommentId, deleteCommentByRessourceIdAndByCommentId, putCommentByRessourceIdAndByCommentId } from "../../services/comments.service";
-import PostType from "../../types/post.type";
-import Navbar from "../Navbar";
-import Comment from "./CreateNewComment";
-import CommentList from "./CommentsList";
 import CommentListType from "../../types/comment.type";
 
 let Post: React.FC = () => {
@@ -15,8 +11,9 @@ let Post: React.FC = () => {
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
 
     let url = window.location.pathname;
-    let ressourceId = parseInt(url.substring(url.lastIndexOf('/') + 1));
-    let commentId = 1
+    let commentId = parseInt(url.substring(url.lastIndexOf('/') + 1));
+    let ressourceId = parseInt(url.substring(url.indexOf('post/') + 5));
+    console.log('commentId', commentId, 'ressourceId', ressourceId)
 
     useEffect(()=> {
       handleGetPostById();

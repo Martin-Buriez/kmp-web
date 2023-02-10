@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 
-import { login } from "../../services/auth.service";
 import Navbar from "../Navbar";
 import { postRessource } from "../../services/ressources.service";
 
 type Props = {}
 
-const Login: React.FC<Props> = () => {
+const CreateNewPost: React.FC<Props> = () => {
   let navigate: NavigateFunction = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -114,4 +112,4 @@ const Login: React.FC<Props> = () => {
   );
 };
 
-export default Login;
+export default CreateNewPost;

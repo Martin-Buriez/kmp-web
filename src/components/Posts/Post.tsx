@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { getRessourceById, deleteRessource, putRessource } from "../../services/ressources.service";
 import PostType from "../../types/post.type";
 import Navbar from "../Navbar";
-import Comment from "../Comments/Comment";
+import CreateNewComment from "../Comments/CreateNewComment";
 import CommentList from "../Comments/CommentsList";
 
 let Post: React.FC = () => {
@@ -152,7 +152,7 @@ let Post: React.FC = () => {
         </div>
         )}
         <CommentList/>
-        <Comment/>
+        <CreateNewComment/>
       </>
     );
 };

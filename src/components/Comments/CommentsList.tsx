@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { getCommentByRessourceId } from "../../services/comments.service";
 import CommentListType from "../../types/comment.type";
-import PostListType from "../../types/post.type";
-import Navbar from "../Navbar";
 
 let CommentList: React.FC = () => {
 
@@ -36,7 +34,7 @@ let CommentList: React.FC = () => {
                 <tbody>
                     {comments && comments.map(comment =>
                       <tr key={comment.id}>
-                            <td className="border border-slate-700"><a href={`post/${comment.id}`}>{comment.id}</a></td>
+                            <td className="border border-slate-700"><a href={`/post/${postId}/comment/${comment.id}`}>{comment.id}</a></td>
                             <td className="border border-slate-700">{comment.value}</td>
                       </tr>
                   )}

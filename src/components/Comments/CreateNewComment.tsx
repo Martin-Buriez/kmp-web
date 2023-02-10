@@ -1,11 +1,8 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
-import React, { useEffect } from "react";
+import React from "react";
 import { postComment } from "../../services/comments.service";
-import { getRessourceById, deleteRessource, putRessource } from "../../services/ressources.service";
-import PostType from "../../types/post.type";
-import Navbar from "../Navbar";
 
-let Comment: React.FC = () => {
+let CreateNewComment: React.FC = () => {
 
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
@@ -87,4 +84,4 @@ let Comment: React.FC = () => {
       </>
     );
 };
-export default Comment;
+export default CreateNewComment;

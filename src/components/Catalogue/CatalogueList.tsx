@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { getAllCatalogues } from "../../services/catalogues.service";
 import CatalogueType from "../../types/catalogue.type";
-import PostListType from "../../types/catalogue.type";
 import Navbar from "../Navbar";
 
 let PostList: React.FC = () => {

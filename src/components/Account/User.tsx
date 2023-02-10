@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { getUserInfosById } from "../../services/user.service";
 import UserType from "../../types/user.type";
 import Navbar from "../Navbar";

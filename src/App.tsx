@@ -13,6 +13,8 @@ import Post from './components/Posts/Post';
 import Catalogue from './components/Catalogue/Catalogue';
 import CreateNewCatalogue from './components/Catalogue/CreateNewCatalogue';
 import CatalogueList from './components/Catalogue/CatalogueList';
+import Comment from "./components/Comments/Comment";
+
 
 const App: React.FC = () => {
   return (
@@ -27,6 +29,7 @@ const App: React.FC = () => {
         <Route path='/post' element={<PostList/>} />
         <Route path='/search' element={<Search/>} />
         <Route path='/users/:id' element={<User/>} />
+        <Route path='/post/:id/comment/:id' element={<Comment/>}></Route> 
         <Route path='/catalogue/add' element={<CreateNewCatalogue/>} />
         <Route path='/catalogue/:id' element={<Catalogue/>} />
         <Route path='/catalogue' element={<CatalogueList/>} />
