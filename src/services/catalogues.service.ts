@@ -75,3 +75,47 @@ export const deleteCatalogue = async (catalogueid: number): Promise<any> => {
     throw error;
   }
 };
+
+export const postViewCatalogue = async (catalogueid: number, bool: boolean): Promise<any> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + catalogueid + "/view/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postShareCatalogue = async (catalogueid: number, bool: boolean): Promise<any> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + catalogueid + "/share/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postLikeCatalogue = async (catalogueid: number, bool: boolean): Promise<any> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + catalogueid + "/like/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postBlockCatalogue = async (catalogueid: number, bool: boolean): Promise<any> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + catalogueid + "/block/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};

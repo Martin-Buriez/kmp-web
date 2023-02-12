@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import React, { useEffect } from "react";
-import { deleteCatalogue, getCatalogueById, putCatalogue } from "../../services/catalogues.service";
+import { deleteCatalogue, getCatalogueById, postBlockCatalogue, postLikeCatalogue, postShareCatalogue, postViewCatalogue, putCatalogue } from "../../services/catalogues.service";
 import { getRessourceById } from "../../services/ressources.service";
 import CatalogueType from "../../types/catalogue.type";
 import Navbar from "../Navbar";
@@ -11,6 +11,9 @@ let Catalogue: React.FC = () => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
+    const [toggleShare, setToggleShare] = React.useState<boolean>(false);
+    const [toggleLike, setToggleLike] = React.useState<boolean>(false);
+    const [toggleBlock, setToggleBlock] = React.useState<boolean>(false);
   
     const initialValues: {
       category: string;
@@ -24,11 +27,28 @@ let Catalogue: React.FC = () => {
 
     useEffect(()=> {
       handleGetCatalogueById();
+      handleViewCatalogue();
     }, []);
 
     const handleToggleUpdate = () => {
       setToggleUpdate(!toggleUpdate);
     };
+
+    const handleToggleShared = () => {
+      setToggleShare(!toggleShare);
+      handleShareCatalogue(toggleShare);
+    };
+
+    const handleToggleLike = () => {
+      setToggleLike(!toggleLike);
+      handleLikeCatalogue(toggleLike);
+    };
+
+    const handleToggleBlock = () => {
+      setToggleBlock(!toggleBlock);
+      handleBlockCatalogue(toggleBlock);
+    };
+
 
     const handleGetCatalogueById = React.useCallback(async () => {
       setCatalogueById(await getCatalogueById(catalogueId));
@@ -38,6 +58,22 @@ let Catalogue: React.FC = () => {
     const handleDeleteCatalogue = React.useCallback(async () => {
       await deleteCatalogue(catalogueId);
       console.log(getRessourceById(catalogueId))
+    }, []);
+
+    const handleViewCatalogue = React.useCallback(async () => {
+      await postViewCatalogue(catalogueId, true);
+    }, []);
+
+    const handleShareCatalogue = React.useCallback(async (toggleShare: boolean) => {
+      await postShareCatalogue(catalogueId, toggleShare);
+    }, []);
+
+    const handleLikeCatalogue = React.useCallback(async (toggleShare: boolean) => {
+      await postLikeCatalogue(catalogueId, toggleShare);
+    }, []);
+
+    const handleBlockCatalogue = React.useCallback(async (toggleShare: boolean) => {
+      await postBlockCatalogue(catalogueId, toggleShare);
     }, []);
 
 
@@ -79,7 +115,14 @@ let Catalogue: React.FC = () => {
             <strong>category:</strong> {category? category : "Not available"}
           </p>
         </div>
+        <button onClick={handleToggleShared}>Share</button>
+        <br/>
+        <button onClick={handleToggleLike}>Like</button>
+        <br/>
+        <button onClick={handleToggleBlock}>Block</button>
+        <br/>
         <button onClick={handleDeleteCatalogue}>Delete</button>
+        <br/>
         <br/>
         <button onClick={handleToggleUpdate}>Update</button>
         {toggleUpdate && (
