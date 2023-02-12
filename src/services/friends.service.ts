@@ -1,10 +1,11 @@
 import axios from "axios";
+import { Relation } from "../types/relation.type";
 import { getCurrentUser } from "./auth.service";
 
 const API_URL = "http://localhost:8080/api/friend";
 
 
-export const postFriendRequest = async (userId: number, relation: string): Promise<any> => { 
+export const postFriendRequest = async (userId: number, relation: Relation): Promise<any> => { 
     const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
     const data = { "test": 'test'}
     try {
@@ -16,7 +17,7 @@ export const postFriendRequest = async (userId: number, relation: string): Promi
     }
 };
 
-export const postAcceptFriendRequest = async (userId: number, relation: string): Promise<any> => { 
+export const postAcceptFriendRequest = async (userId: number, relation: Relation): Promise<any> => { 
     const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
     const data = { "test": 'test'}
     try {
@@ -39,7 +40,7 @@ export const getFriends = async (): Promise<any> => {
     }
 };
 
-export const getFriendsByRelation = async (relation: string): Promise<any> => { 
+export const getFriendsByRelation = async (relation: Relation): Promise<any> => { 
     const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
     try {
       const response = await axios.get(`${API_URL}/relation/${relation}`, { headers });

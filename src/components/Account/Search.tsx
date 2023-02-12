@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { getAllUsers } from "../services/user.service";
-import UserType from "../types/user.type";
-import Navbar from "./Navbar";
+import { getAllUsers } from "../../services/user.service";
+import UserType from "../../types/user.type";
+import Navbar from "../Navbar";
 
 let Search: React.FC = () => {
 

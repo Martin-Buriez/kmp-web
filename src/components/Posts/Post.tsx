@@ -155,7 +155,11 @@ let Post: React.FC = () => {
     
               <div className="form-group">
                 <label htmlFor="access">access</label>
-                <Field name="access" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
+                <Field as="select" name="access" className="form-control border-2	rounded-lg border-stone-500	" >
+                  <option value="public">Publique</option>
+                  <option value="friends">Amis</option>
+                  <option value="family">Famille</option>
+                </Field>
                 <ErrorMessage
                   name="access"
                   component="div"

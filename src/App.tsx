@@ -4,9 +4,9 @@ import Home from './components/Home';
 import Login from './components/Authentication/Login';
 import Register from './components/Authentication/Register';
 import { Route, Routes } from 'react-router-dom'
-import Profile from './components/Authentication/Profile';
+import Profile from './components/Account/Profile';
 import PostList from './components/Posts/PostList';
-import Search from './components/Search';
+import Search from './components/Account/Search';
 import User from './components/Account/User';
 import CreateNewPost from './components/Posts/CreateNewPost';
 import Post from './components/Posts/Post';
@@ -14,7 +14,6 @@ import Catalogue from './components/Catalogue/Catalogue';
 import CreateNewCatalogue from './components/Catalogue/CreateNewCatalogue';
 import CatalogueList from './components/Catalogue/CatalogueList';
 import Comment from "./components/Comments/Comment";
-import FriendRequestList from './components/Friends/AllRequestFriend';
 
 
 
@@ -26,7 +25,6 @@ const App: React.FC = () => {
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/account' element={<Profile/>} />
-        <Route path='/friends' element={<FriendRequestList/>} />
         <Route path='/post/add' element={<CreateNewPost/>} />
         <Route path='/post/:id' element={<Post/>} />
         <Route path='/post' element={<PostList/>} />

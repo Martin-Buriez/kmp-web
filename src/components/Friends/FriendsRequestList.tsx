@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { getFriends, getFriendsByRelation, getFriendsRequest, postAcceptFriendRequest, postFriendRequest } from "../../services/friends.service";
+import { Relation } from "../../types/relation.type";
 
 let FriendsRequestList: React.FC = () => {
 
@@ -18,7 +19,7 @@ let FriendsRequestList: React.FC = () => {
     }
   }, []);
 
-  const handlePostAcceptFriendRequest = React.useCallback(async (userId: number, relation: string) => {
+  const handlePostAcceptFriendRequest = React.useCallback(async (userId: number, relation: Relation) => {
     console.log(userId, relation)
     try {
         setFriendsRequests(await postAcceptFriendRequest(userId , relation))
