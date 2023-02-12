@@ -1,6 +1,6 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import React, { useEffect } from "react";
-import { getRessourceById, deleteRessource, putRessource } from "../../services/ressources.service";
+import { getRessourceById, deleteRessource, putRessource, postViewRessource, postShareRessource, postLikeRessource, postBlockRessource } from "../../services/ressources.service";
 import PostType from "../../types/post.type";
 import Navbar from "../Navbar";
 import CreateNewComment from "../Comments/CreateNewComment";
@@ -12,22 +12,60 @@ let Post: React.FC = () => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
+    const [toggleShare, setToggleShare] = React.useState<boolean>(false);
+    const [toggleLike, setToggleLike] = React.useState<boolean>(false);
+    const [toggleBlock, setToggleBlock] = React.useState<boolean>(false);
+
 
     let url = window.location.pathname;
     let postId = parseInt(url.substring(url.lastIndexOf('/') + 1));
 
     useEffect(()=> {
       handleGetPostById();
+      handleViewRessource();
     }, []);
 
     const handleToggleUpdate = () => {
       setToggleUpdate(!toggleUpdate);
     };
 
+    const handleToggleShared = () => {
+      setToggleShare(!toggleShare);
+      handleShareRessource(toggleShare);
+    };
+
+    const handleToggleLike = () => {
+      setToggleLike(!toggleLike);
+      handleLikeRessource(toggleLike);
+    };
+
+    const handleToggleBlock = () => {
+      setToggleBlock(!toggleBlock);
+      handleBlockRessource(toggleBlock);
+    };
+
+
     const handleDeleteRessource = React.useCallback(async () => {
       await deleteRessource(postId);
       console.log(getRessourceById(postId))
     }, []);
+
+    const handleViewRessource = React.useCallback(async () => {
+      await postViewRessource(postId, true);
+    }, []);
+
+    const handleShareRessource = React.useCallback(async (toggleShare: boolean) => {
+      await postShareRessource(postId, toggleShare);
+    }, []);
+
+    const handleLikeRessource = React.useCallback(async (toggleShare: boolean) => {
+      await postLikeRessource(postId, toggleShare);
+    }, []);
+
+    const handleBlockRessource = React.useCallback(async (toggleShare: boolean) => {
+      await postBlockRessource(postId, toggleShare);
+    }, []);
+
 
 
     const handleUpdateRessource = (formValue: { catalogId: number, access: string, content: string }) => {
@@ -88,6 +126,12 @@ let Post: React.FC = () => {
             <strong>comments:</strong> {comments? comments : "Not available"}
           </p>
         </div>
+        <button onClick={handleToggleShared}>Share</button>
+        <br/>
+        <button onClick={handleToggleLike}>Like</button>
+        <br/>
+        <button onClick={handleToggleBlock}>Block</button>
+        <br/>
         <button onClick={handleDeleteRessource}>Delete</button>
         <br/>
         <button onClick={handleToggleUpdate}>Update</button>

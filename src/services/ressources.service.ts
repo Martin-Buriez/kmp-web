@@ -75,3 +75,47 @@ export const deleteRessource = async (ressouceId: number): Promise<any> => {
     throw error;
   }
 };
+
+export const postViewRessource = async (ressouceId: number, bool: boolean): Promise<PostType> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + ressouceId + "/view/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postShareRessource = async (ressouceId: number, bool: boolean): Promise<PostType> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + ressouceId + "/share/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postLikeRessource = async (ressouceId: number, bool: boolean): Promise<PostType> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + ressouceId + "/like/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postBlockRessource = async (ressouceId: number, bool: boolean): Promise<PostType> => {
+  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
+  const data = { "test": 'test'}
+  return axios
+    .post((API_URL + "/" + ressouceId + "/block/" + bool), data, { headers })
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
