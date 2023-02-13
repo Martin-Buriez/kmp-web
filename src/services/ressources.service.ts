@@ -1,6 +1,7 @@
 import axios from "axios";
 import PostListType from "../types/post.type";
 import PostType from "../types/post.type";
+import { Relation } from "../types/relation.type";
 import { getCurrentUser } from "./auth.service";
 
 const API_URL = "http://localhost:8080/api/resources";
@@ -41,7 +42,24 @@ export const getRessourceById = async (ressouceId: number): Promise<PostType> =>
     }); 
 };
 
-export const postRessource = async (catalogId: number, access: string, content: string): Promise<any> => { 
+export const getRessourceByCategoryId = async (categoryId: number): Promise<PostType> => {
+  const token = getCurrentUser().accessToken;
+  const config = {
+    headers: { 
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Authorization': `Bearer ${token}` 
+    }  };
+  return axios
+    .get((API_URL + "/" + "category" + "/" + categoryId), (config))
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const postRessource = async (catalogId: number, access: Relation | 'public', content: string): Promise<any> => { 
   const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
   const data = { "access": access, "value": content };
   try {
@@ -53,7 +71,7 @@ export const postRessource = async (catalogId: number, access: string, content: 
   }
 };
 
-export const putRessource = async (catalogId: number, access: string, content: string, ressourceId: number): Promise<any> => { 
+export const putRessource = async (catalogId: number, access: Relation | 'public', content: string, ressourceId: number): Promise<any> => { 
   const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
   const data = { "category": catalogId, "access": access, "value": content };
   try {

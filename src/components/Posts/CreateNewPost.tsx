@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 
 import Navbar from "../Navbar";
 import { postRessource } from "../../services/ressources.service";
+import { Relation } from "../../types/relation.type";
+import { getAllCatalogues } from "../../services/catalogues.service";
+import CatalogueType from "../../types/catalogue.type";
 
 type Props = {}
 
@@ -12,18 +15,28 @@ const CreateNewPost: React.FC<Props> = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [catalogues, setCatalogues] = useState<CatalogueType[]>();
 
   const initialValues: {
     catalogId: number;
-    access: string;
+    access: Relation | 'public';
     content: string;
   } = {
     catalogId: 0,
-    access: '',
+    access: 'public',
     content: '',
   };
 
-  const handlepostCreateNewPosts = (formValue: { catalogId: number; access: string; content: string }) => {
+  useEffect(()=> {
+    handleGetAllCatalogues();
+  }, []);
+
+  const handleGetAllCatalogues = React.useCallback(async () => {
+    setCatalogues(await getAllCatalogues());
+  }, []);
+
+
+  const handlepostCreateNewPosts = (formValue: { catalogId: number; access: Relation | 'public'; content: string }) => {
     const { catalogId, access, content } = formValue;
 
     setMessage("");
@@ -47,10 +60,9 @@ const CreateNewPost: React.FC<Props> = () => {
       }
     );
   };
-
+ 
   return (
     <>
-      <Navbar />
       <div className="col-md-12">
         <div className="card card-container">
           <Formik
@@ -58,22 +70,27 @@ const CreateNewPost: React.FC<Props> = () => {
             onSubmit={handlepostCreateNewPosts}
           >
             <Form>
-              <div className="form-group">
-                <label htmlFor="catalogId">catalogId</label>
-                <Field name="catalogId" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
-                <ErrorMessage
-                  name="catalogId"
-                  component="div"
-                  className="alert alert-danger"
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="catalogue">Catalogue</label>
+              <Field as="select" name="catalogId" className="form-control border-2 rounded-lg border-stone-500">
+              {catalogues && catalogues.map(catalogue => (
+                  <option key={catalogue.id} value={catalogue.id}>{catalogue.category}</option>
+                ))}
+              </Field>
+              <ErrorMessage
+                name="catalogId"
+                component="div"
+                className="alert alert-danger"
+              />
+            </div>
     
               <div className="form-group">
                 <label htmlFor="access">access</label>
                 <Field as="select" name="access" className="form-control border-2	rounded-lg border-stone-500	" >
-                  <option value="public">Publique</option>
-                  <option value="friends">Amis</option>
-                  <option value="family">Famille</option>
+                  <option value="public">Public</option>
+                  <option value="connaissance">Connaissance</option>
+                  <option value="amis">Amis</option>
+                  <option value="famille">Famille</option>
                 </Field>
                 <ErrorMessage
                   name="access"

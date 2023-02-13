@@ -5,6 +5,7 @@ import PostType from "../../types/post.type";
 import Navbar from "../Navbar";
 import CreateNewComment from "../Comments/CreateNewComment";
 import CommentList from "../Comments/CommentsList";
+import { Relation } from "../../types/relation.type";
 
 let Post: React.FC = () => {
 
@@ -68,7 +69,7 @@ let Post: React.FC = () => {
 
 
 
-    const handleUpdateRessource = (formValue: { catalogId: number, access: string, content: string }) => {
+    const handleUpdateRessource = (formValue: { catalogId: number, access: Relation | 'public', content: string }) => {
       const { catalogId, access, content } = formValue;
   
       setMessage("");
@@ -101,11 +102,11 @@ let Post: React.FC = () => {
 
     const initialValues: {
       catalogId: number;
-      access: string;
+      access: Relation | 'public';
       content: string;
     } = {
       catalogId: id,
-      access: access,
+      access: access as Relation | 'public',
       content: value,
     };
 
@@ -156,9 +157,10 @@ let Post: React.FC = () => {
               <div className="form-group">
                 <label htmlFor="access">access</label>
                 <Field as="select" name="access" className="form-control border-2	rounded-lg border-stone-500	" >
-                  <option value="public">Publique</option>
-                  <option value="friends">Amis</option>
-                  <option value="family">Famille</option>
+                  <option value="public">Public</option>
+                  <option value="connaissance">Privé</option>
+                  <option value="amis">Amis</option>
+                  <option value="famille">Famille</option>
                 </Field>
                 <ErrorMessage
                   name="access"

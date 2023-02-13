@@ -4,6 +4,7 @@ import { deleteCatalogue, getCatalogueById, postBlockCatalogue, postLikeCatalogu
 import { getRessourceById } from "../../services/ressources.service";
 import CatalogueType from "../../types/catalogue.type";
 import Navbar from "../Navbar";
+import PostListByCatalogueId from "../Posts/PostListByCategoryId";
 
 let Catalogue: React.FC = () => {
 
@@ -123,7 +124,6 @@ let Catalogue: React.FC = () => {
         <br/>
         <button onClick={handleDeleteCatalogue}>Delete</button>
         <br/>
-        <br/>
         <button onClick={handleToggleUpdate}>Update</button>
         {toggleUpdate && (
         <div className="col-md-12">
@@ -164,6 +164,11 @@ let Catalogue: React.FC = () => {
           </div>
         </div>
         )}
+        <br/>
+        
+        <p>--------------------</p>
+        <PostListByCatalogueId />
+        <br />
       </>
     );
 };

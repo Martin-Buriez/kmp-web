@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { getAllCatalogues } from "../../services/catalogues.service";
 import CatalogueType from "../../types/catalogue.type";
 import Navbar from "../Navbar";
+import CreateNewCatalogue from "./CreateNewCatalogue";
 
 let PostList: React.FC = () => {
 
@@ -22,21 +23,23 @@ let PostList: React.FC = () => {
     <>
       <Navbar/>
       <table className="border-collapse border border-slate-500">
-                <thead>
-                    <tr>
-                        <th className="border border-slate-600">Id</th>
-                        <th className="border border-slate-600">Categorie</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {catalogues && catalogues.map(catalogue =>
-                      <tr key={catalogue.id}>
-                            <td className="border border-slate-700"><a href={`catalogue/${catalogue.id}`}>{catalogue.id}</a></td>
-                            <td className="border border-slate-700">{catalogue.category}</td>
-                      </tr>
-                  )}
-                </tbody>
-            </table>
+        <thead>
+            <tr>
+                <th className="border border-slate-600">Id</th>
+                <th className="border border-slate-600">Categorie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {catalogues && catalogues.map(catalogue =>
+              <tr key={catalogue.id}>
+                    <td className="border border-slate-700"><a href={`catalogue/${catalogue.id}`}>{catalogue.id}</a></td>
+                    <td className="border border-slate-700">{catalogue.category}</td>
+              </tr>
+          )}
+        </tbody>
+      </table>
+      <p>--------------</p>
+      <CreateNewCatalogue/>
     </>
   );
 };

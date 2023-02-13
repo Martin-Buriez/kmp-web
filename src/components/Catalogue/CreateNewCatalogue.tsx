@@ -45,7 +45,6 @@ const Login: React.FC<Props> = () => {
 
   return (
     <>
-      <Navbar />
       <div className="col-md-12">
         <div className="card card-container">
           <Formik
