@@ -14,6 +14,7 @@ import Catalogue from './components/Catalogue/Catalogue';
 import CreateNewCatalogue from './components/Catalogue/CreateNewCatalogue';
 import CatalogueList from './components/Catalogue/CatalogueList';
 import Comment from "./components/Comments/Comment";
+import TestActivityRequests from './components/TestActivityRequests';
 
 
 
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         <Route path='/catalogue/:id' element={<Catalogue/>} />
         <Route path='/catalogue' element={<CatalogueList/>} />
         <Route path='*' element={<h1>404: Not Found</h1>} />
+        <Route path='/activity' element={<TestActivityRequests/>} />
       </Routes>
     </>
   );
