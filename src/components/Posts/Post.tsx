@@ -6,6 +6,8 @@ import Navbar from "../Navbar";
 import CreateNewComment from "../Comments/CreateNewComment";
 import CommentList from "../Comments/CommentsList";
 import { Relation } from "../../types/relation.type";
+import { GrEdit, GrFormLock, GrLike, GrShare, GrTrash } from "react-icons/gr";
+import { AiFillBook, AiFillEdit, AiFillHeart, AiFillStop, AiOutlineBook, AiOutlineEdit, AiOutlineHeart, AiOutlineStop } from "react-icons/ai";
 
 let Post: React.FC = () => {
 
@@ -13,9 +15,9 @@ let Post: React.FC = () => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
-    const [toggleShare, setToggleShare] = React.useState<boolean>(false);
-    const [toggleLike, setToggleLike] = React.useState<boolean>(false);
-    const [toggleBlock, setToggleBlock] = React.useState<boolean>(false);
+    const [toggleShare, setToggleShare] = React.useState<boolean>(true);
+    const [toggleLike, setToggleLike] = React.useState<boolean>(true);
+    const [toggleBlock, setToggleBlock] = React.useState<boolean>(true);
 
 
     let url = window.location.pathname;
@@ -127,15 +129,13 @@ let Post: React.FC = () => {
             <strong>comments:</strong> {comments? comments : "Not available"}
           </p>
         </div>
-        <button onClick={handleToggleShared}>Share</button>
-        <br/>
-        <button onClick={handleToggleLike}>Like</button>
-        <br/>
-        <button onClick={handleToggleBlock}>Block</button>
-        <br/>
-        <button onClick={handleDeleteRessource}>Delete</button>
-        <br/>
-        <button onClick={handleToggleUpdate}>Update</button>
+        <div>
+          <button className="mx-2" onClick={handleToggleShared}>{!toggleShare ? (<AiFillBook/>):(<AiOutlineBook/>)}</button>
+          <button className="mx-2" onClick={handleToggleLike}>{!toggleLike ? (<AiFillHeart/>):(<AiOutlineHeart/>)}</button>
+          <button className="mx-2" onClick={handleToggleBlock}>{!toggleBlock ? (<AiFillStop/>):(<AiOutlineStop/>)}</button>
+          <button className="mx-2" onClick={handleDeleteRessource}><GrTrash/></button>
+          <button className="mx-2" onClick={handleToggleUpdate}>{toggleUpdate ? (<AiFillEdit/>):(<AiOutlineEdit/>)}</button>
+        </div>
         {toggleUpdate && (
         <div className="col-md-12">
           <div className="card card-container">

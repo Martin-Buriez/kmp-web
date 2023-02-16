@@ -1,5 +1,6 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import React from "react";
+import { Navigate } from "react-router-dom";
 import { postComment } from "../../services/comments.service";
 
 let CreateNewComment: React.FC = () => {
@@ -20,6 +21,7 @@ let CreateNewComment: React.FC = () => {
       postComment(postId, value).then(
         () => {
           console.log('created')
+          window.location.reload();
         },
         (error) => {
           const resMessage =

@@ -5,6 +5,7 @@ import { getRessourceById } from "../../services/ressources.service";
 import CatalogueType from "../../types/catalogue.type";
 import Navbar from "../Navbar";
 import PostListByCatalogueId from "../Posts/PostListByCategoryId";
+import { GrEdit, GrFormLock, GrLike, GrShare, GrTrash } from "react-icons/gr";
 
 let Catalogue: React.FC = () => {
 
@@ -116,15 +117,15 @@ let Catalogue: React.FC = () => {
             <strong>category:</strong> {category? category : "Not available"}
           </p>
         </div>
-        <button onClick={handleToggleShared}>Share</button>
+        <button onClick={handleToggleShared}><GrShare/></button>
         <br/>
-        <button onClick={handleToggleLike}>Like</button>
+        <button onClick={handleToggleLike}><GrLike/></button>
         <br/>
-        <button onClick={handleToggleBlock}>Block</button>
+        <button onClick={handleToggleBlock}><GrFormLock/></button>
         <br/>
-        <button onClick={handleDeleteCatalogue}>Delete</button>
+        <button onClick={handleDeleteCatalogue}><GrTrash/></button>
         <br/>
-        <button onClick={handleToggleUpdate}>Update</button>
+        <button onClick={handleToggleUpdate}><GrEdit/></button>
         {toggleUpdate && (
         <div className="col-md-12">
           <div className="card card-container">

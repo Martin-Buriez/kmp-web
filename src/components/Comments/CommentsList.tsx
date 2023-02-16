@@ -23,7 +23,6 @@ let CommentList: React.FC = () => {
   return (
     <>
       <br/>
-      <button onClick={handleGetComments}>Get Comments</button>
       <table className="border-collapse border border-slate-500">
                 <thead>
                     <tr>

@@ -1,7 +1,10 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { getCommentByRessourceIdAndByCommentId, deleteCommentByRessourceIdAndByCommentId, putCommentByRessourceIdAndByCommentId } from "../../services/comments.service";
 import CommentListType from "../../types/comment.type";
+import { GrEdit, GrTrash } from "react-icons/gr";
+
 
 let Post: React.FC = () => {
 
@@ -9,6 +12,7 @@ let Post: React.FC = () => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
+    const navigate = useNavigate();
 
     let url = window.location.pathname;
     let commentId = parseInt(url.substring(url.lastIndexOf('/') + 1));
@@ -25,6 +29,8 @@ let Post: React.FC = () => {
 
     const handleDeleteComment = React.useCallback(async () => {
       await deleteCommentByRessourceIdAndByCommentId(ressourceId, commentId);
+      navigate(`/post/${ressourceId}`);
+      window.location.reload();
     }, []);
 
 
@@ -36,7 +42,8 @@ let Post: React.FC = () => {
   
       putCommentByRessourceIdAndByCommentId(ressourceId, commentId, value).then(
         () => {
-          console.log('updated')
+          navigate(`/post/${ressourceId}`);
+          window.location.reload();
         },
         (error) => {
           const resMessage =
@@ -74,9 +81,10 @@ let Post: React.FC = () => {
             <strong>value:</strong> {value? value : "Not available"}
           </p>
         </div>
-        <button onClick={handleDeleteComment}>Delete</button>
-        <br/>
-        <button onClick={handleToggleUpdate}>Update</button>
+        <div>
+          <button className="mx-2" onClick={handleDeleteComment}><GrTrash/></button>
+          <button className="mx-2" onClick={handleToggleUpdate}><GrEdit/></button>
+        </div>
         {toggleUpdate && (
         <div className="col-md-12">
           <div className="card card-container">
