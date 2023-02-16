@@ -5,7 +5,9 @@ import { getRessourceById } from "../../services/ressources.service";
 import CatalogueType from "../../types/catalogue.type";
 import Navbar from "../Navbar";
 import PostListByCatalogueId from "../Posts/PostListByCategoryId";
-import { GrEdit, GrFormLock, GrLike, GrShare, GrTrash } from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
+import { AiFillBook, AiFillEdit, AiFillHeart, AiFillStop, AiOutlineBook, AiOutlineEdit, AiOutlineHeart, AiOutlineStop } from "react-icons/ai";
+
 
 let Catalogue: React.FC = () => {
 
@@ -13,9 +15,9 @@ let Catalogue: React.FC = () => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [message, setMessage] = React.useState<string>("");
     const [toggleUpdate, setToggleUpdate] = React.useState<boolean>(false);
-    const [toggleShare, setToggleShare] = React.useState<boolean>(false);
-    const [toggleLike, setToggleLike] = React.useState<boolean>(false);
-    const [toggleBlock, setToggleBlock] = React.useState<boolean>(false);
+    const [toggleShare, setToggleShare] = React.useState<boolean>(true);
+    const [toggleLike, setToggleLike] = React.useState<boolean>(true);
+    const [toggleBlock, setToggleBlock] = React.useState<boolean>(true);
   
     const initialValues: {
       category: string;
@@ -54,12 +56,10 @@ let Catalogue: React.FC = () => {
 
     const handleGetCatalogueById = React.useCallback(async () => {
       setCatalogueById(await getCatalogueById(catalogueId));
-      console.log(getRessourceById(catalogueId))
     }, []);
 
     const handleDeleteCatalogue = React.useCallback(async () => {
       await deleteCatalogue(catalogueId);
-      console.log(getRessourceById(catalogueId))
     }, []);
 
     const handleViewCatalogue = React.useCallback(async () => {
@@ -87,7 +87,8 @@ let Catalogue: React.FC = () => {
   
       putCatalogue(catalogueId, category).then(
         () => {
-          console.log('updated')
+          setMessage("Category updated successfully!");
+          setLoading(false);
         },
         (error) => {
           const resMessage =
@@ -117,15 +118,13 @@ let Catalogue: React.FC = () => {
             <strong>category:</strong> {category? category : "Not available"}
           </p>
         </div>
-        <button onClick={handleToggleShared}><GrShare/></button>
-        <br/>
-        <button onClick={handleToggleLike}><GrLike/></button>
-        <br/>
-        <button onClick={handleToggleBlock}><GrFormLock/></button>
-        <br/>
-        <button onClick={handleDeleteCatalogue}><GrTrash/></button>
-        <br/>
-        <button onClick={handleToggleUpdate}><GrEdit/></button>
+        <div>
+          <button className="mx-2" onClick={handleToggleShared}>{!toggleShare ? (<AiFillBook/>):(<AiOutlineBook/>)}</button>
+          <button className="mx-2" onClick={handleToggleLike}>{!toggleLike ? (<AiFillHeart/>):(<AiOutlineHeart/>)}</button>
+          <button className="mx-2" onClick={handleToggleBlock}>{!toggleBlock ? (<AiFillStop/>):(<AiOutlineStop/>)}</button>
+          <button className="mx-2" onClick={handleDeleteCatalogue}><GrTrash/></button>
+          <button className="mx-2" onClick={handleToggleUpdate}>{toggleUpdate ? (<AiFillEdit/>):(<AiOutlineEdit/>)}</button>
+        </div>
         {toggleUpdate && (
         <div className="col-md-12">
           <div className="card card-container">

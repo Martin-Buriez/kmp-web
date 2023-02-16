@@ -12,7 +12,6 @@ let FriendsRequestList: React.FC = () => {
 
   const handleGetFriendsRequest = React.useCallback(async () => {
     try {
-        console.log(await getFriendsRequest())
         setFriendsRequests(await getFriendsRequest())
     } catch (error) {
         console.error(error);
@@ -20,7 +19,6 @@ let FriendsRequestList: React.FC = () => {
   }, []);
 
   const handlePostAcceptFriendRequest = React.useCallback(async (userId: number, relation: Relation) => {
-    console.log(userId, relation)
     try {
         setFriendsRequests(await postAcceptFriendRequest(userId , relation))
     } catch (error) {

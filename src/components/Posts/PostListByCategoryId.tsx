@@ -15,7 +15,6 @@ let PostListByCatalogueId: React.FC = () => {
   let catalogueId = parseInt(url.substring(url.lastIndexOf('/') + 1));
 
   const handleGetPostsByCategoryId = React.useCallback(async () => {
-    console.log("catalogueId", catalogueId)
     try {
         setPosts(await getRessourceByCategoryId(catalogueId))
     } catch (error) {

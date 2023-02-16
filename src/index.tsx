@@ -2,19 +2,17 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
-import Navbar from './components/Navbar';
 
 ReactDOM.render(
-  <>
-  <head>
-    <link href="/dist/output.css" rel="stylesheet"></link>
-  </head>
   <BrowserRouter>
     <App />
-  </BrowserRouter>
-      <head>
-      <link href="/dist/output.css" rel="stylesheet"></link>
-    </head>
-  </>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
+
+const head = document.querySelector("head");
+const link = document.createElement("link");
+link.rel = "stylesheet";
+link.href = "/dist/output.css";
+if (head)
+  head.appendChild(link);

@@ -6,7 +6,7 @@ import Navbar from "../Navbar";
 import CreateNewComment from "../Comments/CreateNewComment";
 import CommentList from "../Comments/CommentsList";
 import { Relation } from "../../types/relation.type";
-import { GrEdit, GrFormLock, GrLike, GrShare, GrTrash } from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
 import { AiFillBook, AiFillEdit, AiFillHeart, AiFillStop, AiOutlineBook, AiOutlineEdit, AiOutlineHeart, AiOutlineStop } from "react-icons/ai";
 
 let Post: React.FC = () => {
@@ -50,7 +50,6 @@ let Post: React.FC = () => {
 
     const handleDeleteRessource = React.useCallback(async () => {
       await deleteRessource(postId);
-      console.log(getRessourceById(postId))
     }, []);
 
     const handleViewRessource = React.useCallback(async () => {
@@ -79,7 +78,8 @@ let Post: React.FC = () => {
   
       putRessource(catalogId, access, content, postId).then(
         () => {
-          console.log('updated')
+          setLoading(false);
+          setMessage("Post updated successfully!");
         },
         (error) => {
           const resMessage =
@@ -97,7 +97,6 @@ let Post: React.FC = () => {
 
     const handleGetPostById = React.useCallback(async () => {
       setPostById(await getRessourceById(postId));
-      console.log(getRessourceById(postId))
     }, []);
 
     const { id, access, value, comments } = postById;

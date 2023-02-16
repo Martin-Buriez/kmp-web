@@ -14,13 +14,11 @@ let CreateNewComment: React.FC = () => {
     const handlePostComment = (formValue: { value: string }) => {
       const { value } = formValue;
     
-      console.log("postId", postId)
       setMessage("");
       setLoading(true);
   
       postComment(postId, value).then(
         () => {
-          console.log('created')
           window.location.reload();
         },
         (error) => {

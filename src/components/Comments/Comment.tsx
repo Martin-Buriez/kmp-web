@@ -17,7 +17,6 @@ let Post: React.FC = () => {
     let url = window.location.pathname;
     let commentId = parseInt(url.substring(url.lastIndexOf('/') + 1));
     let ressourceId = parseInt(url.substring(url.indexOf('post/') + 5));
-    console.log('commentId', commentId, 'ressourceId', ressourceId)
 
     useEffect(()=> {
       handleGetPostById();
