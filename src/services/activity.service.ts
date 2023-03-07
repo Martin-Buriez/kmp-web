@@ -1,20 +1,11 @@
 import axios from "axios";
-import { getCurrentUser } from "./auth.service";
+import { headersConfig } from "./auth.service";
 
 const API_URL = "http://localhost:8080/api/activity";
 
 export const getUserActivity = async (): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/`, config);
+        const response = await axios.get(`${API_URL}/user/`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -23,17 +14,8 @@ export const getUserActivity = async (): Promise<any[]> => {
 };
 
 export const getSharedByUserId = async (userId: number): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/${userId}/share`, config);
+        const response = await axios.get(`${API_URL}/user/${userId}/share`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -42,17 +24,8 @@ export const getSharedByUserId = async (userId: number): Promise<any[]> => {
 };
 
 export const getLikedByUserId = async (userId: number): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/${userId}/like`, config);
+        const response = await axios.get(`${API_URL}/user/${userId}/like`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -61,17 +34,8 @@ export const getLikedByUserId = async (userId: number): Promise<any[]> => {
 };
 
 export const getUserViews = async (): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/view`, config);
+        const response = await axios.get(`${API_URL}/user/view`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -80,17 +44,8 @@ export const getUserViews = async (): Promise<any[]> => {
 };
 
 export const getUserShare = async (): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/share`, config);
+        const response = await axios.get(`${API_URL}/user/share`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -99,17 +54,8 @@ export const getUserShare = async (): Promise<any[]> => {
 };
 
 export const getUserLike = async (): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/like`, config);
+        const response = await axios.get(`${API_URL}/user/like`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -118,17 +64,8 @@ export const getUserLike = async (): Promise<any[]> => {
 };
 
 export const getUserBlocked = async (): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/user/blocked`, config);
+        const response = await axios.get(`${API_URL}/user/blocked`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -137,17 +74,8 @@ export const getUserBlocked = async (): Promise<any[]> => {
 };
 
 export const getActivityByRessourceId = async (ressourceId: number): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/resource/${ressourceId}`, config);
+        const response = await axios.get(`${API_URL}/resource/${ressourceId}`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -156,17 +84,8 @@ export const getActivityByRessourceId = async (ressourceId: number): Promise<any
 };
 
 export const getActivityByCatalogueId = async (catalogId: number): Promise<any[]> => {
-    const token = getCurrentUser().accessToken;
-    const config = {
-      headers: { 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Authorization': `Bearer ${token}` 
-      }
-    };
     try {
-        const response = await axios.get(`${API_URL}/catalogue/${catalogId}`, config);
+        const response = await axios.get(`${API_URL}/catalogue/${catalogId}`, headersConfig);
         return response.data;
     } catch (error) {
         console.error(error);

@@ -49,3 +49,14 @@ export const getCurrentUser = () => {
   if (userStr) return JSON.parse(userStr);
   return null;
 };
+
+const currentUser = (getCurrentUser()) ? (getCurrentUser().accessToken) : null;
+
+export const headersConfig = {
+  headers: { 
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Authorization': `Bearer ${currentUser}` 
+  }
+};

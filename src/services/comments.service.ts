@@ -1,15 +1,14 @@
 import axios from "axios";
 import CommentListType from "../types/comment.type";
-import { getCurrentUser } from "./auth.service";
+import { headersConfig } from "./auth.service";
 
 const API_URL = "http://localhost:8080/api/resource";
 
 
 export const postComment = async (ressourceId: number, value: string): Promise<any> => { 
-  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
   const data = { "value": value };
   try {
-    const response = await axios.post(`${API_URL}/${ressourceId}/comments`, data, { headers });
+    const response = await axios.post(`${API_URL}/${ressourceId}/comments`, data, headersConfig);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -18,22 +17,13 @@ export const postComment = async (ressourceId: number, value: string): Promise<a
 };
 
 export const getCommentByRessourceId = async (ressourceId: number): Promise<CommentListType[]> => { 
-  const headers = { 'Authorization': 'Bearer ' + getCurrentUser().accessToken };
-  const response = await axios.get(`${API_URL}/${ressourceId}/comments`, { headers });
+  const response = await axios.get(`${API_URL}/${ressourceId}/comments`, headersConfig);
   return response.data;
 };
 
 export const getCommentByRessourceIdAndByCommentId = async (ressouceId: number, commentId: number): Promise<any> => {
-  const token = getCurrentUser().accessToken;
-  const config = {
-    headers: { 
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Authorization': `Bearer ${token}` 
-    }  };
   return axios
-    .get((API_URL + "/" + ressouceId + "/comments/" + commentId), (config))
+    .get((API_URL + "/" + ressouceId + "/comments/" + commentId), (headersConfig))
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;
@@ -41,19 +31,11 @@ export const getCommentByRessourceIdAndByCommentId = async (ressouceId: number, 
 };
 
 export const putCommentByRessourceIdAndByCommentId = async (ressouceId: number, commentId: number, value: string): Promise<any> => {
-  const token = getCurrentUser().accessToken;
-  const config = {
-    headers: { 
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Authorization': `Bearer ${token}` 
-    }  };
   const data = {
     "value": value
   }
   return axios
-    .put((API_URL + "/" + ressouceId + "/comments/" + commentId), data, (config))
+    .put((API_URL + "/" + ressouceId + "/comments/" + commentId), data, (headersConfig))
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;
@@ -61,16 +43,8 @@ export const putCommentByRessourceIdAndByCommentId = async (ressouceId: number, 
 };
 
 export const deleteCommentByRessourceIdAndByCommentId = async (ressouceId: number, commentId: number): Promise<any> => {
-  const token = getCurrentUser().accessToken;
-  const config = {
-    headers: { 
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Authorization': `Bearer ${token}` 
-    }  };
   return axios
-    .delete((API_URL + "/" + ressouceId + "/comments/" + commentId), (config))
+    .delete((API_URL + "/" + ressouceId + "/comments/" + commentId), (headersConfig))
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;

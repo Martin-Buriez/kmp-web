@@ -1,1 +1,1 @@
-export type Relation = "connaissance" | "amis" | "famille";
+export type Relation = "public" | "connaissance" | "amis" | "famille";

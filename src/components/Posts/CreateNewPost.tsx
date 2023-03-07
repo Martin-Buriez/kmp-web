@@ -19,11 +19,11 @@ const CreateNewPost: React.FC<Props> = () => {
 
   const initialValues: {
     catalogId: number;
-    access: Relation | 'public';
+    access: Relation | 'Veuillez entrer un accès';
     content: string;
   } = {
     catalogId: 0,
-    access: 'public',
+    access: 'Veuillez entrer un accès',
     content: '',
   };
 
@@ -36,7 +36,7 @@ const CreateNewPost: React.FC<Props> = () => {
   }, []);
 
 
-  const handlepostCreateNewPosts = (formValue: { catalogId: number; access: Relation | 'public'; content: string }) => {
+  const handlepostCreateNewPosts = (formValue: { catalogId: number; access: Relation | 'Veuillez entrer un accès'; content: string }) => {
     const { catalogId, access, content } = formValue;
 
     setMessage("");
@@ -73,6 +73,7 @@ const CreateNewPost: React.FC<Props> = () => {
             <div className="form-group">
               <label htmlFor="catalogue">Catalogue</label>
               <Field as="select" name="catalogId" className="form-control border-2 rounded-lg border-stone-500">
+                <option value="Veuillez entrer un catalogue">Veuillez entrer un catalogue</option>
               {catalogues && catalogues.map(catalogue => (
                   <option key={catalogue.id} value={catalogue.id}>{catalogue.category}</option>
                 ))}
@@ -85,8 +86,9 @@ const CreateNewPost: React.FC<Props> = () => {
             </div>
     
               <div className="form-group">
-                <label htmlFor="access">access</label>
+                <label htmlFor="access">Accès</label>
                 <Field as="select" name="access" className="form-control border-2	rounded-lg border-stone-500	" >
+                  <option value="Veuillez entrer un public">Veuillez entrer un public</option>
                   <option value="public">Public</option>
                   <option value="connaissance">Connaissance</option>
                   <option value="amis">Amis</option>

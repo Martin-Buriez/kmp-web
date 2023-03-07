@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { getCurrentUserInfos } from "../../services/user.service";
 import UserType from "../../types/user.type";
+import UserActivityList from "../Activity/UserActivityList";
 import FriendsList from "../Friends/FriendsList";
 import FriendsRequestList from "../Friends/FriendsRequestList";
 import Navbar from "../Navbar";
@@ -45,6 +46,7 @@ let Profile: React.FC = () => {
       </div>
       <FriendsRequestList/>
       <FriendsList/>
+      <UserActivityList/>
     </>
   );
 };

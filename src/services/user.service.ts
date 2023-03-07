@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 import UserType from "../types/user.type";
-import { getCurrentUser } from "./auth.service";
+import { headersConfig } from "./auth.service";
 
 const LOGIN_API_URL = "http://localhost:8080/api/auth/login";
 
@@ -16,12 +16,8 @@ export const getUserBoard = () => {
 const API_URL = "http://localhost:8080/api/user";
 
 export const getCurrentUserInfos = (): Promise<UserType> => {
-  const token = getCurrentUser().accessToken;
-  const config = {
-    headers: { 'Authorization': 'Bearer ' + token }
-  };
   return axios
-    .get((API_URL + "/actual"), (config))
+    .get((API_URL + "/actual"), (headersConfig))
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;
@@ -29,12 +25,8 @@ export const getCurrentUserInfos = (): Promise<UserType> => {
 };
 
 export const getUserInfosById = (userId: number): Promise<UserType> => {
-  const token = getCurrentUser().accessToken;
-  const config = {
-    headers: { 'Authorization': 'Bearer ' + token }
-  };
   return axios
-    .get((API_URL + "/id/" + userId), (config))
+    .get((API_URL + "/id/" + userId), headersConfig)
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;
@@ -42,12 +34,8 @@ export const getUserInfosById = (userId: number): Promise<UserType> => {
 };
 
 export const getAllUsers = (): Promise<UserType[]> => {
-  const token = getCurrentUser().accessToken;
-  const config = {
-    headers: { 'Authorization': 'Bearer ' + token }
-  };
   return axios
-    .get((API_URL + "/all"), (config))
+    .get((API_URL + "/all"), headersConfig)
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;
