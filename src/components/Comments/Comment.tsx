@@ -103,7 +103,7 @@ let Post: React.FC = () => {
                         htmlFor="value"
                         className="block text-gray-700 font-bold mb-2"
                       >
-                        value
+                        Commentaire :
                       </label>
                       <Field
                         name="value"
@@ -126,7 +126,7 @@ let Post: React.FC = () => {
                         {isSubmitting && (
                           <span className="mr-2 spinner-border spinner-border-sm"></span>
                         )}
-                        Update Comment
+                        Mettre à jour le commentaire
                       </button>
                     </div>
     

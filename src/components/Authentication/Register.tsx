@@ -6,7 +6,6 @@ import IUser from "../../types/user.type";
 import { register } from "../../services/auth.service";
 import RegisterInput from "./RegisterInput";
 import UserType from "../../types/user.type";
-import Navbar from "../Navbar";
 
 const Register: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
@@ -28,28 +27,28 @@ const Register: React.FC = () => {
     name: Yup.string()
       .test(
         "len",
-        "The name must be between 3 and 20 characters.",
+        "Le nom doit contenir entre 3 et 20 caractères.",
         (val: any) =>
           val &&
           val.toString().length >= 3 &&
           val.toString().length <= 20
       )
-      .required("This field is required!"),
+      .required("Ce champ est requis"),
     lastName: Yup.string()
-      .required("This field is required!"),
+      .required("Ce champ est requis"),
     email: Yup.string()
-      .email("This is not a valid email.")
-      .required("This field is required!"),
+      .email("Cet email n'est pas valide.")
+      .required("Ce champ est requis"),
     password: Yup.string()
       .test(
         "len",
-        "The password must be between 6 and 40 characters.",
+        "Le mot de passe doit contenir entre 6 et 40 caractères.",
         (val: any) =>
           val &&
           val.toString().length >= 6 &&
           val.toString().length <= 40
       )
-      .required("This field is required!"),
+      .required("Ce champ est requis"),
   });
 
   const handleRegister = (formValue: IUser) => {
@@ -90,19 +89,19 @@ const Register: React.FC = () => {
             <Form className="flex flex-col space-y-4">
               {!successful && (
                 <>
-                  <RegisterInput name="name" type="string"/>
-                  <RegisterInput name="lastName" type="string"/>
-                  <RegisterInput name="birthday" type="string"/>
-                  <RegisterInput name="email" type="string"/>
-                  <RegisterInput name="address" type="string"/>
-                  <RegisterInput name="city" type="string"/>
-                  <RegisterInput name="zipCode" type="strign"/>
-                  <RegisterInput name="password" type="password"/>
+                  <RegisterInput value="Prénom" name="name" type="string"/>
+                  <RegisterInput value="Nom" name="lastName" type="string"/>
+                  <RegisterInput value="Date de naissance" name="birthday" type="string"/>
+                  <RegisterInput value="Email" name="email" type="string"/>
+                  <RegisterInput value="Adresse" name="address" type="string"/>
+                  <RegisterInput value="Ville" name="city" type="string"/>
+                  <RegisterInput value="Code postal" name="zipCode" type="strign"/>
+                  <RegisterInput value="Mot de passe" name="password" type="password"/>
                   <button
                     type="submit"
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
                   >
-                    Sign Up
+                    S'enregistrer
                   </button>
                 </>
               )}

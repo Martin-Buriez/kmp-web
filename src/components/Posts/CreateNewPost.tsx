@@ -101,7 +101,7 @@ const CreateNewPost: React.FC<Props> = () => {
               </div>
   
               <div className="form-group">
-                <label htmlFor="content" className="block font-medium text-gray-700">Content</label>
+                <label htmlFor="content" className="block font-medium text-gray-700">Contenu</label>
                 <Field name="content" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-stone-500 focus:border-stone-500 sm:text-sm" />
                 <ErrorMessage
                   name="content"
@@ -115,7 +115,7 @@ const CreateNewPost: React.FC<Props> = () => {
                   {loading && (
                     <span className="mr-2 spinner-border spinner-border-sm"></span>
                   )}
-                  <span>Create Post</span>
+                  <span>Créer</span>
                 </button>
               </div>
   

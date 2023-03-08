@@ -1,9 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import React, { useEffect } from "react";
 import { deleteCatalogue, getCatalogueById, postBlockCatalogue, postLikeCatalogue, postShareCatalogue, postViewCatalogue, putCatalogue } from "../../services/catalogues.service";
-import { getRessourceById } from "../../services/ressources.service";
 import CatalogueType from "../../types/catalogue.type";
-import Navbar from "../Navbar";
 import PostListByCatalogueId from "../Posts/PostListByCategoryId";
 import { GrTrash } from "react-icons/gr";
 import { AiFillBook, AiFillEdit, AiFillHeart, AiFillStop, AiOutlineBook, AiOutlineEdit, AiOutlineHeart, AiOutlineStop } from "react-icons/ai";
@@ -104,23 +102,21 @@ let Catalogue: React.FC = () => {
       );
     };
   
-
-    const { id, category} = catalogueById;
+    const { category} = catalogueById;
 
     return (
       <>
-        <Navbar />
         <div className="container mx-auto py-8">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold text-gray-800">{category}</h1>
             <div className="flex">
-              <button className="mx-2 focus:outline-none" onClick={() => setToggleShare(!toggleShare)}>
+              <button className="mx-2 focus:outline-none" onClick={(handleToggleShared)}>
                 {!toggleShare ? (<AiFillBook className="text-2xl text-gray-800" />) : (<AiOutlineBook className="text-2xl text-gray-800" />)}
               </button>
-              <button className="mx-2 focus:outline-none" onClick={() => setToggleLike(!toggleLike)}>
+              <button className="mx-2 focus:outline-none" onClick={(handleToggleLike)}>
                 {!toggleLike ? (<AiFillHeart className="text-2xl text-gray-800" />) : (<AiOutlineHeart className="text-2xl text-gray-800" />)}
               </button>
-              <button className="mx-2 focus:outline-none" onClick={() => setToggleBlock(!toggleBlock)}>
+              <button className="mx-2 focus:outline-none" onClick={(handleToggleBlock)}>
                 {!toggleBlock ? (<AiFillStop className="text-2xl text-gray-800" />) : (<AiOutlineStop className="text-2xl text-gray-800" />)}
               </button>
               <button className="mx-2 focus:outline-none" onClick={handleDeleteCatalogue}><GrTrash className="text-2xl text-gray-800" /></button>
@@ -132,7 +128,7 @@ let Catalogue: React.FC = () => {
           {toggleUpdate && (
           <div className="my-4">
             <div className="border rounded-md p-4">
-              <h2 className="text-lg font-semibold mb-2">Update Catalogue</h2>
+              <h2 className="text-lg font-semibold mb-2">Mettre à jour le catalogue</h2>
               <Formik
                 initialValues={initialValues}
                 onSubmit={handleUpdateCatalogue}
@@ -140,7 +136,7 @@ let Catalogue: React.FC = () => {
                 {({ isSubmitting }) => (
                   <Form>
                     <div className="my-2">
-                      <label htmlFor="category" className="block font-medium mb-1">Category</label>
+                      <label htmlFor="category" className="block font-medium mb-1">Categorie</label>
                       <Field name="category" type="text" className="w-full px-3 py-2 rounded-md border-gray-400 focus:outline-none focus:border-blue-500" />
                       <ErrorMessage
                         name="category"
@@ -154,7 +150,7 @@ let Catalogue: React.FC = () => {
                         {loading && (
                           <span className="spinner-border spinner-border-sm mr-2"></span>
                         )}
-                        Update Category
+                        Mettre à jour la categorie 
                       </button>
                       {message && (
                         <div className="text-red-500 text-sm mt-2">

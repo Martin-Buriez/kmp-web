@@ -1,14 +1,15 @@
 import { ErrorMessage, Field } from "formik";
 
 type RegisterInputProps = {
+  value: string;
   name: string;
   type: string;
 };   
 
-function RegisterInput({ name, type }: RegisterInputProps) {
+function RegisterInput({ name, type, value }: RegisterInputProps) {
   return (
     <div className="mt-4">
-      <label htmlFor={name} className="text-gray-700">{name}</label>
+      <label htmlFor={name} className="text-gray-700">{value}</label>
       <Field
         name={name}
         type={type}

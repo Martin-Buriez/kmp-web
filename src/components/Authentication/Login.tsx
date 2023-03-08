@@ -67,7 +67,7 @@ const Login: React.FC<Props> = () => {
                   htmlFor="username"
                   className="block text-gray-700 font-bold mb-2"
                 >
-                  Username
+                  Nom d'utilisateur
                 </label>
                 <Field
                   name="username"
@@ -86,7 +86,7 @@ const Login: React.FC<Props> = () => {
                   htmlFor="password"
                   className="block text-gray-700 font-bold mb-2"
                 >
-                  Password
+                  Mot de passe
                 </label>
                 <Field
                   name="password"
@@ -109,7 +109,7 @@ const Login: React.FC<Props> = () => {
                   {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
                   )}
-                  <span>Login</span>
+                  <span>Se connecter</span>
                 </button>
               </div>
 

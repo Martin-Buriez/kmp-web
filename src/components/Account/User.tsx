@@ -34,19 +34,19 @@ const Profile: React.FC = () => {
     <>
       <div className="container mx-auto my-5 px-4 py-2 bg-gray-100 rounded-lg shadow-md">
         <p className="text-lg font-bold">
-          {name || "Not available"} {lastName || "Not available"}
+          {name || "Non disponible"} {lastName || "Non disponible"}
         </p>
         <p>
-          <strong>Email:</strong> {email || "Not available"}
+          <strong>Email :</strong> {email || "Non disponible"}
         </p>
         <p>
-          <strong>Birthday:</strong> {birthday || "Not available"}
+          <strong>Anniversaire :</strong> {birthday || "Non disponible"}
         </p>
         <p>
-          <strong>Adress:</strong> {address || "Not available"}
+          <strong>Adresse :</strong> {address || "Non disponible"}
         </p>
         <p>
-          <strong>ZipCode:</strong> {zipCode || "Not available"}
+          <strong>Code postal :</strong> {zipCode || "Non disponible"}
         </p>
       </div>
       <label className="block my-3">

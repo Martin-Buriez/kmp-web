@@ -21,7 +21,7 @@ let Search: React.FC = () => {
                     <div key={user.name} className="border border-slate-500 p-4 rounded-md">
                         <h3 className="font-bold text-lg">{user.name} {user.lastName}</h3>
                         <p className="text-gray-700">{user.email}</p>
-                        <a href={`users/${user.id}`} className="text-blue-500 hover:underline">View profile</a>
+                        <a href={`users/${user.id}`} className="text-blue-500 hover:underline">Voir le profil</a>
                     </div>
                 )}
             </div>

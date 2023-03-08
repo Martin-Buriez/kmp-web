@@ -32,11 +32,11 @@ let FriendsRequestList: React.FC = () => {
         friendsRequests.map((friendsRequest) => (
           <div key={friendsRequest.id} className="border border-slate-500 p-4 my-4">
             <div>
-              <span className="font-bold">User: </span>
+              <span className="font-bold">Utilisateur : </span>
               {friendsRequest.user.name} {friendsRequest.user.lastName}
             </div>
             <div>
-              <span className="font-bold">Relation: </span>
+              <span className="font-bold">Relation : </span>
               {friendsRequest.relation}
             </div>
             <div className="mt-2 flex">
@@ -49,10 +49,10 @@ let FriendsRequestList: React.FC = () => {
                   )
                 }
               >
-                Accept
+                Accepter
               </button>
               <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Refuse
+                Refuser
               </button>
             </div>
           </div>
@@ -61,7 +61,7 @@ let FriendsRequestList: React.FC = () => {
         className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         onClick={handleGetFriendsRequest}
       >
-        Get Friends Request
+        Mettre à jour
       </button>
     </>
   );

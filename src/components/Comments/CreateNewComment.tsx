@@ -50,7 +50,7 @@ let CreateNewComment: React.FC = () => {
             >
               <Form>
                 <div className="mb-4">
-                  <label htmlFor="value" className="block text-gray-700 font-bold mb-2">Comment</label>
+                  <label htmlFor="value" className="block text-gray-700 font-bold mb-2">Commentaire :</label>
                   <Field name="value" type="text" className="form-control border-2 rounded-lg border-gray-400 py-2 px-4 w-full text-gray-700 leading-tight focus:outline-none focus:border-blue-500" />
                   <ErrorMessage
                     name="value"
@@ -64,7 +64,7 @@ let CreateNewComment: React.FC = () => {
                     {loading && (
                       <span className="spinner-border spinner-border-sm"></span>
                     )}
-                    <span>Post Comment</span>
+                    <span>Poster le commentaire</span>
                   </button>
                 </div>
     

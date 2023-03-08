@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { getRessourceByCategoryId } from "../../services/ressources.service";
 import PostListType from "../../types/post.type";
-import Navbar from "../Navbar";
 
 let PostListByCatalogueId: React.FC = () => {
 
@@ -33,7 +32,7 @@ let PostListByCatalogueId: React.FC = () => {
                 <div className="text-gray-700 text-base">{post.access}</div>
                 <div className="mt-4">
                   <a href={`post/${post.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    View Post
+                    Voir le post
                   </a>
                 </div>
               </div>
@@ -41,7 +40,7 @@ let PostListByCatalogueId: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div>No posts found</div>
+        <div>Pas de posts trouvés pour cette catégorie</div>
       )}    
     </>
   );

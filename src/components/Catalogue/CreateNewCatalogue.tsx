@@ -53,7 +53,7 @@ const Login: React.FC<Props> = () => {
           >
             <Form>
               <div className="mb-4">
-                <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Category</label>
+                <label htmlFor="category" className="block text-gray-700 font-bold mb-2">Categorie</label>
                 <Field name="category" type="text" className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-stone-500" />
                 <ErrorMessage
                   name="category"
@@ -67,14 +67,14 @@ const Login: React.FC<Props> = () => {
                   {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
                   )}
-                  <span>Create Category</span>
+                  <span>Créer la catégorie</span>
                 </button>
               </div>
   
               {message && (
                 <div className="form-group">
                   <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <strong className="font-bold">Error:</strong>
+                    <strong className="font-bold">Erreur :</strong>
                     <span className="block sm:inline"> {message}</span>
                   </div>
                 </div>

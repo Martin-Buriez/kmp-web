@@ -53,12 +53,12 @@ const UserActivityList: React.FC = () => {
 
     return (
       <>
-        <h2><b>Posts {activityType}:</b></h2>
+        <h2><b>Postes {activityType}:</b></h2>
         <ul>
           {activities.map((activity) => (
             <li key={activity.id}>
               <p>{activity.resource.value}</p>
-              <p>Categorie: {activity.resource.catalogue[0].category}</p>
+              <p>Categorie : {activity.resource.catalogue[0].category}</p>
             </li>
           ))}
         </ul>

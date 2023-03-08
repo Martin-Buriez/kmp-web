@@ -42,7 +42,7 @@ let PostList: React.FC = () => {
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">{post.access}</span>
                 </div>
                 <div className="mt-3 flex justify-end">
-                  <a href={`post/${post.id}`} className="text-sm text-indigo-600 hover:text-indigo-900">See details</a>
+                  <a href={`post/${post.id}`} className="text-sm text-indigo-600 hover:text-indigo-900">Voir ce post</a>
                 </div>
               </div>
             )}

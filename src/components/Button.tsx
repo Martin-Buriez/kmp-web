@@ -9,9 +9,14 @@ import { GrCatalog } from "react-icons/gr";
 
 type ButtonProps = {
   name: string;
+  value: string;
 }; 
 
-function logoName({ name }: ButtonProps){
+type LogoProps = {
+  name: string;
+}
+
+function logoName({ name }: LogoProps){
   switch(name){
     case "Login":
       return <BiLogIn />;
@@ -32,7 +37,7 @@ function logoName({ name }: ButtonProps){
   }
 }
 
-function Button({ name }: ButtonProps) {
+function Button({ name, value }: ButtonProps) {
   return (
     <div className="flex items-center">
       <Link to={`/${(name === "Home") ? "" : name}`}>
@@ -40,7 +45,7 @@ function Button({ name }: ButtonProps) {
           {logoName({name})}
         </div>
       </Link>
-      <Link to={`/${(name === "Home") ? "" : name}`} className="text-gray-800 font-medium text-lg">{name}</Link>
+      <Link to={`/${(name === "Home") ? "" : name}`} className="text-gray-800 font-medium text-lg">{value}</Link>
     </div>
   );
 }

@@ -2,12 +2,13 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import React, { useEffect } from "react";
 import { getRessourceById, deleteRessource, putRessource, postViewRessource, postShareRessource, postLikeRessource, postBlockRessource } from "../../services/ressources.service";
 import PostType from "../../types/post.type";
-import Navbar from "../Navbar";
 import CreateNewComment from "../Comments/CreateNewComment";
 import CommentList from "../Comments/CommentsList";
 import { Relation } from "../../types/relation.type";
 import { GrTrash } from "react-icons/gr";
 import { AiFillBook, AiFillEdit, AiFillHeart, AiFillStop, AiOutlineBook, AiOutlineEdit, AiOutlineHeart, AiOutlineStop } from "react-icons/ai";
+import CatalogueType from "../../types/catalogue.type";
+import { getAllCatalogues } from "../../services/catalogues.service";
 
 let Post: React.FC = () => {
 
@@ -18,6 +19,7 @@ let Post: React.FC = () => {
     const [toggleShare, setToggleShare] = React.useState<boolean>(true);
     const [toggleLike, setToggleLike] = React.useState<boolean>(true);
     const [toggleBlock, setToggleBlock] = React.useState<boolean>(true);
+    const [catalogues, setCatalogues] = React.useState<CatalogueType[]>();
 
 
     let url = window.location.pathname;
@@ -26,6 +28,11 @@ let Post: React.FC = () => {
     useEffect(()=> {
       handleGetPostById();
       handleViewRessource();
+      handleGetAllCatalogues();
+    }, []);
+  
+    const handleGetAllCatalogues = React.useCallback(async () => {
+      setCatalogues(await getAllCatalogues());
     }, []);
 
     const handleToggleUpdate = () => {
@@ -99,14 +106,14 @@ let Post: React.FC = () => {
       setPostById(await getRessourceById(postId));
     }, []);
 
-    const { id, access, value, comments } = postById;
+    const { access, value } = postById;
 
     const initialValues: {
       catalogId: number;
       access: Relation | 'public';
       content: string;
     } = {
-      catalogId: id,
+      catalogId: postById.catalogue ? postById.catalogue[0].id : 0,
       access: access as Relation | 'public',
       content: value,
     };
@@ -116,16 +123,10 @@ let Post: React.FC = () => {
         <div className="container mx-auto py-8">
           <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <p className="mb-4">
-              <strong>id:</strong> {id ? id : "Not available"}
+             {value ? value : "Not available"}
             </p>
             <p className="mb-4">
-              <strong>access:</strong> {access ? access : "Not available"}
-            </p>
-            <p className="mb-4">
-              <strong>value:</strong> {value ? value : "Not available"}
-            </p>
-            <p className="mb-4">
-              <strong>comments:</strong> {comments ? comments : "Not available"}
+              <strong>accès :</strong> {access ? access : "Not available"}
             </p>
           </div>
           <div className="flex items-center mb-8">
@@ -164,25 +165,23 @@ let Post: React.FC = () => {
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <Formik initialValues={initialValues} onSubmit={handleUpdateRessource}>
                 <Form>
-                  <div className="mb-4">
-                    <label htmlFor="catalogId" className="block text-gray-700 font-bold mb-2">
-                      catalogId
-                    </label>
-                    <Field
-                      name="catalogId"
-                      type="text"
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-blue-500"
-                    />
-                    <ErrorMessage
-                      name="catalogId"
-                      component="div"
-                      className="text-red-500 text-sm mt-1"
-                    />
-                  </div>
+                <div className="form-group">
+                <label htmlFor="catalogue" className="block font-medium text-gray-700">Catalogue</label>
+                <Field as="select" name="catalogId" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-stone-500 focus:border-stone-500 sm:text-sm">
+                  {catalogues && catalogues.map(catalogue => (
+                    <option key={catalogue.id} value={catalogue.id}>{catalogue.category}</option>
+                  ))}
+                </Field>
+                <ErrorMessage
+                  name="catalogId"
+                  component="div"
+                  className="text-red-600 text-sm"
+                />
+              </div>
   
                   <div className="mb-4">
                     <label htmlFor="access" className="block text-gray-700 font-bold mb-2">
-                      access
+                      accès
                     </label>
                     <Field
                       as="select"
@@ -201,7 +200,7 @@ let Post: React.FC = () => {
                   />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="content">Content</label>
+                    <label htmlFor="content">Post</label>
                     <Field name="content" type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-blue-500"/>
                     <ErrorMessage
                       name="content"
@@ -214,7 +213,7 @@ let Post: React.FC = () => {
                       {loading && (
                         <span className="spinner-border spinner-border-sm"></span>
                       )}
-                      <span>Update Resource</span>
+                      <span>Mettre à jour le post</span>
                     </button>
                   </div>
                       
