@@ -54,52 +54,68 @@ const Login: React.FC<Props> = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+      <div className="flex justify-center items-center h-screen">
+        <div className="max-w-md w-full">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleLogin}
           >
-            <Form>
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <Field name="username" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
+            <Form className="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+              <div className="mb-6">
+                <label
+                  htmlFor="username"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Username
+                </label>
+                <Field
+                  name="username"
+                  type="text"
+                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
                 <ErrorMessage
                   name="username"
                   component="div"
-                  className="alert alert-danger"
+                  className="text-red-500 text-xs italic"
                 />
               </div>
-    
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Field name="password" type="password" className="form-control border-2	rounded-lg border-stone-500	" />
+
+              <div className="mb-6">
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 font-bold mb-2"
+                >
+                  Password
+                </label>
+                <Field
+                  name="password"
+                  type="password"
+                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
                 <ErrorMessage
                   name="password"
                   component="div"
-                  className="alert alert-danger"
+                  className="text-red-500 text-xs italic"
                 />
               </div>
-    
-              <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+
+              <div className="flex items-center justify-between">
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  disabled={loading}
+                >
                   {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
                   )}
                   <span>Login</span>
                 </button>
               </div>
-                  
+
               {message && (
-                <div className="form-group">
-                  <div className="alert alert-danger" role="alert">
+                <div className="mt-4">
+                  <div className="bg-red-100 border border-red-400 text-red-700">
                     {message}
                   </div>
                 </div>

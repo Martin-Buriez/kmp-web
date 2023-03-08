@@ -21,27 +21,24 @@ let PostList: React.FC = () => {
   }, []);
   return (
     <>
-      <Navbar/>
-      <table className="border-collapse border border-slate-500">
-        <thead>
-            <tr>
-                <th className="border border-slate-600">Id</th>
-                <th className="border border-slate-600">Categorie</th>
-            </tr>
-        </thead>
-        <tbody>
-            {catalogues && catalogues.map(catalogue =>
-              <tr key={catalogue.id}>
-                    <td className="border border-slate-700"><a href={`catalogue/${catalogue.id}`}>{catalogue.id}</a></td>
-                    <td className="border border-slate-700">{catalogue.category}</td>
-              </tr>
-          )}
-        </tbody>
-      </table>
-      <p>--------------</p>
-      <CreateNewCatalogue/>
+      <Navbar />
+      <div className="border border-slate-500 rounded-md p-4">
+        <h2 className="text-lg font-medium text-slate-900 mb-2">Catalogues</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {catalogues &&
+            catalogues.map((catalogue) => (
+              <div key={catalogue.id} className="border border-slate-600 rounded-md p-4">
+                <h3 className="text-md font-medium text-slate-900 mb-2">{catalogue.category}</h3>
+                <a href={`catalogue/${catalogue.id}`} className="text-blue-600 hover:underline">
+                  View Catalogue
+                </a>
+              </div>
+            ))}
+        </div>
+        <CreateNewCatalogue />
+      </div>
     </>
   );
-};
+};  
   
 export default PostList;

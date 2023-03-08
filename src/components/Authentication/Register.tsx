@@ -73,25 +73,23 @@ const Register: React.FC = () => {
       }
     );
   };
-
   return (
     <>
-      <Navbar />
-      <div className="col-md-12">
-        <div className="card card-container">
+      <div className="flex justify-center items-center h-full">
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col w-full max-w-md">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
-            className="profile-img-card"
+            className="w-32 mx-auto mb-6"
           />
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleRegister}
           >
-            <Form>
+            <Form className="flex flex-col space-y-4">
               {!successful && (
-                <div>
+                <>
                   <RegisterInput name="name" type="string"/>
                   <RegisterInput name="lastName" type="string"/>
                   <RegisterInput name="birthday" type="string"/>
@@ -100,17 +98,20 @@ const Register: React.FC = () => {
                   <RegisterInput name="city" type="string"/>
                   <RegisterInput name="zipCode" type="strign"/>
                   <RegisterInput name="password" type="password"/>
-                  <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                  </div>
-                </div>
+                  <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Sign Up
+                  </button>
+                </>
               )}
   
               {message && (
                 <div className="form-group">
                   <div
                     className={
-                      successful ? "alert alert-success" : "alert alert-danger"
+                      successful ? "bg-green-100 border-green-500 text-green-900" : "bg-red-100 border-red-500 text-red-900"
                     }
                     role="alert"
                   >
@@ -124,6 +125,6 @@ const Register: React.FC = () => {
       </div>
     </>
   );
-};
+};  
 
 export default Register;

@@ -16,27 +16,15 @@ let Search: React.FC = () => {
 
     return (
         <>
-            <Navbar />
-            <table className="border-collapse border border-slate-500">
-                <thead>
-                    <tr>
-                        <th className="border border-slate-600">Name</th>
-                        <th className="border border-slate-600">LastName</th>
-                        <th className="border border-slate-600">Email</th>
-                        <th className="border border-slate-600">ZipCode</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users && users.map(user =>
-                      <tr key={user.name}>
-                            <td className="border border-slate-700"><a href={`users/${user.id}`}>{user.name}</a></td>
-                            <td className="border border-slate-700">{user.lastName}</td>
-                            <td className="border border-slate-700">{user.email}</td>
-                            <td className="border border-slate-700">{user.zipCode}</td>
-                      </tr>
-                  )}
-                </tbody>
-            </table>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {users && users.map(user =>
+                    <div key={user.name} className="border border-slate-500 p-4 rounded-md">
+                        <h3 className="font-bold text-lg">{user.name} {user.lastName}</h3>
+                        <p className="text-gray-700">{user.email}</p>
+                        <a href={`users/${user.id}`} className="text-blue-500 hover:underline">View profile</a>
+                    </div>
+                )}
+            </div>
         </>
     )
 }

@@ -24,26 +24,22 @@ let PostListByCatalogueId: React.FC = () => {
   return (
     <>
       {posts && posts.content && posts.content.length > 0 ? (
-          <table className="border-collapse border border-slate-500">
-            <thead>
-                <tr>
-                    <th className="border border-slate-600">Id</th>
-                    <th className="border border-slate-600">Value</th>
-                    <th className="border border-slate-600">Catalogue</th>
-                    <th className="border border-slate-600">Accès</th>
-                </tr>
-            </thead>
-            <tbody>
-                {posts && posts.content.map(post =>
-                  <tr key={post.id}>
-                        <td className="border border-slate-700"><a href={`post/${post.id}`}>{post.id}</a></td>
-                        <td className="border border-slate-700">{post.value}</td>
-                        <td className="border border-slate-700">{post.catalogue[0].category}</td>
-                        <td className="border border-slate-700">{post.access}</td>
-                  </tr>
-              )}
-            </tbody>
-          </table>
+        <div className="grid grid-cols-1 gap-4">
+          {posts.content.map(post => (
+            <div key={post.id} className="bg-white rounded-lg overflow-hidden shadow-md">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">{post.value}</div>
+                <div className="text-gray-700 text-base">{post.catalogue[0].category}</div>
+                <div className="text-gray-700 text-base">{post.access}</div>
+                <div className="mt-4">
+                  <a href={`post/${post.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    View Post
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
         <div>No posts found</div>
       )}    

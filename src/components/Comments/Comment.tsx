@@ -72,58 +72,75 @@ let Post: React.FC = () => {
 
     return (
       <>
-        <div className="container">
-          <p>
-            <strong>id:</strong> {id? id : "Not available"}
-          </p>
-          <p>
-            <strong>value:</strong> {value? value : "Not available"}
+        <div className="container mx-auto">
+          <p className="font-bold">
+            <span className="text-gray-600"></span>{" "}
+            {value ? value : "Not available"}
           </p>
         </div>
         <div>
-          <button className="mx-2" onClick={handleDeleteComment}><GrTrash/></button>
-          <button className="mx-2" onClick={handleToggleUpdate}><GrEdit/></button>
+          <button
+            className="mx-2 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75"
+            onClick={handleDeleteComment}
+          >
+            <GrTrash />
+          </button>
+          <button
+            className="mx-2 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75"
+            onClick={handleToggleUpdate}
+          >
+            <GrEdit />
+          </button>
         </div>
         {toggleUpdate && (
-        <div className="col-md-12">
-          <div className="card card-container">
-            <Formik
-              initialValues={initialValues}
-              onSubmit={handleUpdateComment}
-            >
-              <Form>
-                <div className="form-group">
-                  <label htmlFor="value">value</label>
-                  <Field name="value" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
-                  <ErrorMessage
-                    name="value"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-    
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                    {loading && (
-                      <span className="spinner-border spinner-border-sm"></span>
-                    )}
-                    <span>Update Comment</span>
-                  </button>
-                </div>
-
-                {message && (
-                  <div className="form-group">
-                    <div className="alert alert-danger" role="alert">
-                      {message}
+          <div className="container mx-auto">
+            <div className="max-w-md mx-auto my-8 bg-white p-6 rounded-md shadow-md">
+              <Formik initialValues={initialValues} onSubmit={handleUpdateComment}>
+                {({ isSubmitting }) => (
+                  <Form>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="value"
+                        className="block text-gray-700 font-bold mb-2"
+                      >
+                        value
+                      </label>
+                      <Field
+                        name="value"
+                        type="text"
+                        className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      />
+                      <ErrorMessage
+                        name="value"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
                     </div>
-                  </div>
+    
+                    <div className="flex justify-center">
+                      <button
+                        type="submit"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting && (
+                          <span className="mr-2 spinner-border spinner-border-sm"></span>
+                        )}
+                        Update Comment
+                      </button>
+                    </div>
+    
+                    {message && (
+                      <div className="text-red-500 text-sm mt-4">{message}</div>
+                    )}
+                  </Form>
                 )}
-              </Form>
-            </Formik>
+              </Formik>
+            </div>
           </div>
-        </div>
         )}
       </>
     );
+    
 };
 export default Post;

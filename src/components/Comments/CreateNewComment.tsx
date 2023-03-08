@@ -40,36 +40,34 @@ let CreateNewComment: React.FC = () => {
     } = {
       value: "",
     };
-
     return (
       <>
         <div className="col-md-12">
-          <div className="card card-container">
+          <div className="card border border-gray-400 p-6 rounded-md shadow-sm">
             <Formik
               initialValues={initialValues}
               onSubmit={handlePostComment}
             >
               <Form>
-              <div className="form-group">
-                <label htmlFor="value">comment</label>
-                <Field name="value" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
-                <ErrorMessage
-                  name="value"
-                  component="div"
-                  className="alert alert-danger"
-                />
-              </div>
+                <div className="mb-4">
+                  <label htmlFor="value" className="block text-gray-700 font-bold mb-2">Comment</label>
+                  <Field name="value" type="text" className="form-control border-2 rounded-lg border-gray-400 py-2 px-4 w-full text-gray-700 leading-tight focus:outline-none focus:border-blue-500" />
+                  <ErrorMessage
+                    name="value"
+                    component="div"
+                    className="text-red-500 text-sm mt-2"
+                  />
+                </div>
     
-
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                <div className="mb-6">
+                  <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={loading}>
                     {loading && (
                       <span className="spinner-border spinner-border-sm"></span>
                     )}
                     <span>Post Comment</span>
                   </button>
                 </div>
-
+    
                 {message && (
                   <div className="form-group">
                     <div className="alert alert-danger" role="alert">
@@ -82,6 +80,6 @@ let CreateNewComment: React.FC = () => {
           </div>
         </div>
       </>
-    );
+    );    
 };
 export default CreateNewComment;

@@ -22,25 +22,16 @@ let CommentList: React.FC = () => {
   }, []);
   return (
     <>
-      <br/>
-      <table className="border-collapse border border-slate-500">
-                <thead>
-                    <tr>
-                        <th className="border border-slate-600">Id</th>
-                        <th className="border border-slate-600">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {comments && comments.map(comment =>
-                      <tr key={comment.id}>
-                            <td className="border border-slate-700"><a href={`/post/${postId}/comment/${comment.id}`}>{comment.id}</a></td>
-                            <td className="border border-slate-700">{comment.value}</td>
-                      </tr>
-                  )}
-                </tbody>
-            </table>
+      <br />
+      {comments && comments.map(comment =>
+        <div key={comment.id} className="border border-slate-500 p-2 my-2">
+          <p className="font-semibold">{comment.user.name} {comment.user.lastName} a dit :</p>
+          <p><a href={`/post/${postId}/comment/${comment.id}`}>{comment.value}</a></p>
+        </div>
+      )}
     </>
   );
+  
 };
 
 export default CommentList;

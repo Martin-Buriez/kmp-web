@@ -19,34 +19,43 @@ let PostList: React.FC = () => {
         console.error(error);
     }
   }, []);
+  
   return (
     <>
-      <Navbar/>
-      <table className="border-collapse border border-slate-500">
-        <thead>
-            <tr>
-                <th className="border border-slate-600">Id</th>
-                <th className="border border-slate-600">Value</th>
-                <th className="border border-slate-600">Catalogue</th>
-                <th className="border border-slate-600">Accès</th>
-            </tr>
-        </thead>
-        <tbody>
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="px-4 py-5 sm:p-6">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Posts
+          </h3>
+        </div>
+        <div className="border-t border-gray-200">
+          <div className="divide-y divide-gray-200">
             {posts && posts.content.map(post =>
-              <tr key={post.id}>
-                    <td className="border border-slate-700"><a href={`post/${post.id}`}>{post.id}</a></td>
-                    <td className="border border-slate-700">{post.value}</td>
-                    <td className="border border-slate-700">{post.catalogue[0].category}</td>
-                    <td className="border border-slate-700">{post.access}</td>
-              </tr>
-          )}
-        </tbody>
-      </table>
-      <p>----------</p>
-      <CreateNewPost/>
-
+              <div key={post.id} className="px-4 py-3">
+                <div className="flex items-center">
+                </div>
+                <div className="mt-3">
+                  <p className="text-sm text-gray-700">{post.value}</p>
+                </div>
+                <div className="mt-3">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{post.catalogue[0].category}</span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">{post.access}</span>
+                </div>
+                <div className="mt-3 flex justify-end">
+                  <a href={`post/${post.id}`} className="text-sm text-indigo-600 hover:text-indigo-900">See details</a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="mt-4">
+        <CreateNewPost/>
+      </div>
     </>
   );
+  
+  
 };
 
 export default PostList;

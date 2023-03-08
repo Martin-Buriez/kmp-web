@@ -60,34 +60,33 @@ const CreateNewPost: React.FC<Props> = () => {
       }
     );
   };
- 
   return (
     <>
       <div className="col-md-12">
-        <div className="card card-container">
+        <div className="card card-container p-6 border-2 rounded-lg border-gray-300">
           <Formik
             initialValues={initialValues}
             onSubmit={handlepostCreateNewPosts}
           >
             <Form>
-            <div className="form-group">
-              <label htmlFor="catalogue">Catalogue</label>
-              <Field as="select" name="catalogId" className="form-control border-2 rounded-lg border-stone-500">
-                <option value="Veuillez entrer un catalogue">Veuillez entrer un catalogue</option>
-              {catalogues && catalogues.map(catalogue => (
-                  <option key={catalogue.id} value={catalogue.id}>{catalogue.category}</option>
-                ))}
-              </Field>
-              <ErrorMessage
-                name="catalogId"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-    
               <div className="form-group">
-                <label htmlFor="access">Accès</label>
-                <Field as="select" name="access" className="form-control border-2	rounded-lg border-stone-500	" >
+                <label htmlFor="catalogue" className="block font-medium text-gray-700">Catalogue</label>
+                <Field as="select" name="catalogId" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-stone-500 focus:border-stone-500 sm:text-sm">
+                  <option value="Veuillez entrer un catalogue">Veuillez entrer un catalogue</option>
+                  {catalogues && catalogues.map(catalogue => (
+                    <option key={catalogue.id} value={catalogue.id}>{catalogue.category}</option>
+                  ))}
+                </Field>
+                <ErrorMessage
+                  name="catalogId"
+                  component="div"
+                  className="text-red-600 text-sm"
+                />
+              </div>
+  
+              <div className="form-group">
+                <label htmlFor="access" className="block font-medium text-gray-700">Accès</label>
+                <Field as="select" name="access" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-stone-500 focus:border-stone-500 sm:text-sm">
                   <option value="Veuillez entrer un public">Veuillez entrer un public</option>
                   <option value="public">Public</option>
                   <option value="connaissance">Connaissance</option>
@@ -97,34 +96,33 @@ const CreateNewPost: React.FC<Props> = () => {
                 <ErrorMessage
                   name="access"
                   component="div"
-                  className="alert alert-danger"
+                  className="text-red-600 text-sm"
                 />
               </div>
-
-
+  
               <div className="form-group">
-                <label htmlFor="content">content</label>
-                <Field name="content" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
+                <label htmlFor="content" className="block font-medium text-gray-700">Content</label>
+                <Field name="content" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-stone-500 focus:border-stone-500 sm:text-sm" />
                 <ErrorMessage
                   name="content"
                   component="div"
-                  className="alert alert-danger"
+                  className="text-red-600 text-sm"
                 />
               </div>
-    
+  
               <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-stone-500 hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stone-500" disabled={loading}>
                   {loading && (
-                    <span className="spinner-border spinner-border-sm"></span>
+                    <span className="mr-2 spinner-border spinner-border-sm"></span>
                   )}
                   <span>Create Post</span>
                 </button>
               </div>
-                  
+  
               {message && (
                 <div className="form-group">
-                  <div className="alert alert-danger" role="alert">
-                    {message}
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <span className="block sm:inline">{message}</span>
                   </div>
                 </div>
               )}
@@ -133,7 +131,7 @@ const CreateNewPost: React.FC<Props> = () => {
         </div>
       </div>
     </>
-  );
+  );  
 };
 
 export default CreateNewPost;

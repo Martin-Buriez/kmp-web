@@ -25,8 +25,8 @@ function logoName({ name }: ButtonProps){
       return <AiFillHome />;
     case "Post":
       return <IoCreateOutline/>;
-      case "Catalogue":
-        return <GrCatalog/>;
+    case "Catalogue":
+      return <GrCatalog/>;
     default:
       return <BsQuestionDiamond />;
   }
@@ -34,9 +34,13 @@ function logoName({ name }: ButtonProps){
 
 function Button({ name }: ButtonProps) {
   return (
-    <div className={`button${name} align-center`}>        
-        {logoName({name})}
-        <Link to={`/${(name === "Home") ? "" : name}`} className={`${name}_button`}>{name}</Link>
+    <div className="flex items-center">
+      <Link to={`/${(name === "Home") ? "" : name}`}>
+        <div className="flex items-center justify-center rounded-md w-8 h-8 bg-white text-gray-600 mr-2">
+          {logoName({name})}
+        </div>
+      </Link>
+      <Link to={`/${(name === "Home") ? "" : name}`} className="text-gray-800 font-medium text-lg">{name}</Link>
     </div>
   );
 }

@@ -28,29 +28,44 @@ let FriendsRequestList: React.FC = () => {
 
   return (
     <>
-        <table className="border-collapse border border-slate-500">
-            <thead>
-                <tr>
-                    <th className="border border-slate-600">User</th>
-                    <th className="border border-slate-600">Relation</th>
-                    <th className="border border-slate-600">Accept</th>
-                    <th className="border border-slate-600">Refuse</th>
-                </tr>
-            </thead>
-            <tbody>
-                {friendsRequests && friendsRequests.map(friendsRequest =>
-                  <tr key={friendsRequest.id}>
-                        <td className="border border-slate-700"><a href={`post/${friendsRequest.user.id}`}>{friendsRequest.user.name}</a></td>
-                        <td className="border border-slate-700">{friendsRequest.relation}</td>
-                        <td className="border border-slate-700"><button onClick={() => handlePostAcceptFriendRequest(friendsRequest.user.id, friendsRequest.relation)}>Accept</button></td>
-                        <td className="border border-slate-700">Refuse</td>
-                  </tr>
-              )}
-            </tbody>
-            </table>
-        <button onClick={handleGetFriendsRequest}>Get Friends Request</button>
+      {friendsRequests &&
+        friendsRequests.map((friendsRequest) => (
+          <div key={friendsRequest.id} className="border border-slate-500 p-4 my-4">
+            <div>
+              <span className="font-bold">User: </span>
+              {friendsRequest.user.name} {friendsRequest.user.lastName}
+            </div>
+            <div>
+              <span className="font-bold">Relation: </span>
+              {friendsRequest.relation}
+            </div>
+            <div className="mt-2 flex">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded"
+                onClick={() =>
+                  handlePostAcceptFriendRequest(
+                    friendsRequest.user.id,
+                    friendsRequest.relation
+                  )
+                }
+              >
+                Accept
+              </button>
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Refuse
+              </button>
+            </div>
+          </div>
+        ))}
+      <button
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        onClick={handleGetFriendsRequest}
+      >
+        Get Friends Request
+      </button>
     </>
   );
+  
 };
 
 export default FriendsRequestList;

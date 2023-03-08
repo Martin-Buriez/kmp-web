@@ -110,66 +110,69 @@ let Catalogue: React.FC = () => {
     return (
       <>
         <Navbar />
-        <div className="container">
-          <p>
-            <strong>id:</strong> {id? id : "Not available"}
-          </p>
-          <p>
-            <strong>category:</strong> {category? category : "Not available"}
-          </p>
-        </div>
-        <div>
-          <button className="mx-2" onClick={handleToggleShared}>{!toggleShare ? (<AiFillBook/>):(<AiOutlineBook/>)}</button>
-          <button className="mx-2" onClick={handleToggleLike}>{!toggleLike ? (<AiFillHeart/>):(<AiOutlineHeart/>)}</button>
-          <button className="mx-2" onClick={handleToggleBlock}>{!toggleBlock ? (<AiFillStop/>):(<AiOutlineStop/>)}</button>
-          <button className="mx-2" onClick={handleDeleteCatalogue}><GrTrash/></button>
-          <button className="mx-2" onClick={handleToggleUpdate}>{toggleUpdate ? (<AiFillEdit/>):(<AiOutlineEdit/>)}</button>
-        </div>
-        {toggleUpdate && (
-        <div className="col-md-12">
-          <div className="card card-container">
-            <Formik
-              initialValues={initialValues}
-              onSubmit={handleUpdateCatalogue}
-            >
-              <Form>
-                <div className="form-group">
-                  <label htmlFor="category">category</label>
-                  <Field name="category" type="text" className="form-control border-2	rounded-lg border-stone-500	" />
-                  <ErrorMessage
-                    name="category"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                    {loading && (
-                      <span className="spinner-border spinner-border-sm"></span>
-                    )}
-                    <span>Update Category</span>
-                  </button>
-                </div>
-
-                {message && (
-                  <div className="form-group">
-                    <div className="alert alert-danger" role="alert">
-                      {message}
-                    </div>
-                  </div>
-                )}
-              </Form>
-            </Formik>
+        <div className="container mx-auto py-8">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-gray-800">{category}</h1>
+            <div className="flex">
+              <button className="mx-2 focus:outline-none" onClick={() => setToggleShare(!toggleShare)}>
+                {!toggleShare ? (<AiFillBook className="text-2xl text-gray-800" />) : (<AiOutlineBook className="text-2xl text-gray-800" />)}
+              </button>
+              <button className="mx-2 focus:outline-none" onClick={() => setToggleLike(!toggleLike)}>
+                {!toggleLike ? (<AiFillHeart className="text-2xl text-gray-800" />) : (<AiOutlineHeart className="text-2xl text-gray-800" />)}
+              </button>
+              <button className="mx-2 focus:outline-none" onClick={() => setToggleBlock(!toggleBlock)}>
+                {!toggleBlock ? (<AiFillStop className="text-2xl text-gray-800" />) : (<AiOutlineStop className="text-2xl text-gray-800" />)}
+              </button>
+              <button className="mx-2 focus:outline-none" onClick={handleDeleteCatalogue}><GrTrash className="text-2xl text-gray-800" /></button>
+              <button className="mx-2 focus:outline-none" onClick={handleToggleUpdate}>
+                {toggleUpdate ? (<AiFillEdit className="text-2xl text-gray-800" />) : (<AiOutlineEdit className="text-2xl text-gray-800" />)}
+              </button>
+            </div>
           </div>
+          {toggleUpdate && (
+          <div className="my-4">
+            <div className="border rounded-md p-4">
+              <h2 className="text-lg font-semibold mb-2">Update Catalogue</h2>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={handleUpdateCatalogue}
+              >
+                {({ isSubmitting }) => (
+                  <Form>
+                    <div className="my-2">
+                      <label htmlFor="category" className="block font-medium mb-1">Category</label>
+                      <Field name="category" type="text" className="w-full px-3 py-2 rounded-md border-gray-400 focus:outline-none focus:border-blue-500" />
+                      <ErrorMessage
+                        name="category"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+    
+                    <div className="mt-4">
+                      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-all duration-300 ease-in-out" disabled={isSubmitting}>
+                        {loading && (
+                          <span className="spinner-border spinner-border-sm mr-2"></span>
+                        )}
+                        Update Category
+                      </button>
+                      {message && (
+                        <div className="text-red-500 text-sm mt-2">
+                          {message}
+                        </div>
+                      )}
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+          </div>
+          )}
+          <hr className="my-4" />
+          <PostListByCatalogueId/>
         </div>
-        )}
-        <br/>
-        
-        <p>--------------------</p>
-        <PostListByCatalogueId />
-        <br />
       </>
     );
+    
 };
 export default Catalogue;

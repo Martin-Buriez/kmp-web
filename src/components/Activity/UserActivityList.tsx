@@ -46,43 +46,35 @@ const UserActivityList: React.FC = () => {
     }
   };
 
-  const renderActivityTable = (activities: UserActivity[], activityType: string) => {
+  const renderActivityList = (activities: UserActivity[], activityType: string) => {
     if (activities.length === 0) {
       return null;
     }
 
     return (
       <>
-        <p>Posts {activityType}</p>
-        <table className="border-collapse border border-slate-500">
-          <thead>
-            <tr>
-              <th className="border border-slate-600">Id</th>
-              <th className="border border-slate-600">Categorie</th>
-            </tr>
-          </thead>
-          <tbody>
-            {activities.map((activity) => (
-              <tr key={activity.id}>
-                <td className="border border-slate-700">{activity.resource.value}</td>
-                <td className="border border-slate-700">{activity.resource.catalogue[0].category}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <h2><b>Posts {activityType}:</b></h2>
+        <ul>
+          {activities.map((activity) => (
+            <li key={activity.id}>
+              <p>{activity.resource.value}</p>
+              <p>Categorie: {activity.resource.catalogue[0].category}</p>
+            </li>
+          ))}
+        </ul>
       </>
     );
   };
 
   return (
-    <>
+    <div className="container">
       <br />
       <br />
-      {renderActivityTable(createdActivities, "créés")}
-      {renderActivityTable(likedActivities, "likés")}
-      {renderActivityTable(sharedActivities, "partagés")}
-      {renderActivityTable(blockedActivities, "bloqués")}
-    </>
+      {renderActivityList(createdActivities, "créés")}
+      {renderActivityList(likedActivities, "likés")}
+      {renderActivityList(sharedActivities, "partagés")}
+      {renderActivityList(blockedActivities, "bloqués")}
+    </div>
   );
 };
 

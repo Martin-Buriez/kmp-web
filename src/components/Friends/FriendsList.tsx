@@ -19,25 +19,16 @@ let FriendsRequestList: React.FC = () => {
 
   return (
     <>
-        <table className="border-collapse border border-slate-500">
-            <thead>
-                <tr>
-                    <th className="border border-slate-600">User</th>
-                    <th className="border border-slate-600">Relation</th>
-                </tr>
-            </thead>
-            <tbody>
-                {friends && friends.map(friends =>
-                  <tr key={friends.id}>
-                        <td className="border border-slate-700"><a href={`post/${friends.friend.name}`}>{friends.friend.name}</a></td>
-                        <td className="border border-slate-700">{friends.relation}</td>
-                  </tr>
-              )}
-            </tbody>
-            </table>
-        <button onClick={handleGetFriendsRequest}>Get Friends Request</button>
+      {friends && friends.map(friend => (
+        <div key={friend.id} className="border border-slate-500 p-2 mb-2">
+          <div className="font-semibold">User: <a href={`post/${friend.friend.name}`}>{friend.friend.name}</a></div>
+          <div className="font-semibold">Relation: {friend.relation}</div>
+        </div>
+      ))}
+      <button onClick={handleGetFriendsRequest}>Get Friends Request</button>
     </>
   );
+  
 };
 
 export default FriendsRequestList;
