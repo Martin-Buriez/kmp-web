@@ -167,7 +167,7 @@ let Post: React.FC = () => {
                 <Form>
                 <div className="form-group">
                 <label htmlFor="catalogue" className="block font-medium text-gray-700">Catalogue</label>
-                <Field as="select" name="catalogId" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-stone-500 focus:border-stone-500 sm:text-sm">
+                <Field as="select" name="catalogId" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-blue-500">
                   {catalogues && catalogues.map(catalogue => (
                     <option key={catalogue.id} value={catalogue.id}>{catalogue.category}</option>
                   ))}

@@ -21,7 +21,7 @@ let PostList: React.FC = () => {
 
   return (
     <>
-      <div className="border border-slate-500 rounded-md p-4">
+      <div className="border border-slate-500 rounded-md p-4 m-4">
         <h2 className="text-lg font-medium text-slate-900 mb-2">Catalogues</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {catalogues &&

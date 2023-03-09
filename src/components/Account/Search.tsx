@@ -16,7 +16,7 @@ let Search: React.FC = () => {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4">
                 {users && users.map(user =>
                     <div key={user.name} className="border border-slate-500 p-4 rounded-md">
                         <h3 className="font-bold text-lg">{user.name} {user.lastName}</h3>

@@ -62,8 +62,7 @@ const CreateNewPost: React.FC<Props> = () => {
   };
   return (
     <>
-      <div className="col-md-12">
-        <div className="card card-container p-6 border-2 rounded-lg border-gray-300">
+      <div className="border border-slate-500 rounded-md p-4 m-4">
           <Formik
             initialValues={initialValues}
             onSubmit={handlepostCreateNewPosts}
@@ -110,7 +109,7 @@ const CreateNewPost: React.FC<Props> = () => {
                 />
               </div>
   
-              <div className="form-group">
+              <div className="form-group pt-4">
                 <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-stone-500 hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stone-500" disabled={loading}>
                   {loading && (
                     <span className="mr-2 spinner-border spinner-border-sm"></span>
@@ -128,7 +127,6 @@ const CreateNewPost: React.FC<Props> = () => {
               )}
             </Form>
           </Formik>
-        </div>
       </div>
     </>
   );  

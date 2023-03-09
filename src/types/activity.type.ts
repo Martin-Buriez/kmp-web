@@ -7,6 +7,7 @@ export interface UserActivity {
     resource: {
       value: string;
       catalogue: CatalogueType[];
+      id: string;
     };
   }
   

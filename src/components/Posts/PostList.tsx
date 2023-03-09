@@ -22,7 +22,7 @@ let PostList: React.FC = () => {
   
   return (
     <>
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="border border-slate-500 rounded-md p-4 m-4">
         <div className="px-4 py-5 sm:p-6">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             Posts

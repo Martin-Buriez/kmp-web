@@ -3,6 +3,7 @@ import { postFriendRequest } from "../../services/friends.service";
 import { getUserInfosById } from "../../services/user.service";
 import { Relation } from "../../types/relation.type";
 import UserType from "../../types/user.type";
+import UserByIdActivityList from "../Activity/UserByIdActivityList";
 import Navbar from "../Navbar";
 
 const Profile: React.FC = () => {
@@ -32,7 +33,7 @@ const Profile: React.FC = () => {
 
   return (
     <>
-      <div className="container mx-auto my-5 px-4 py-2 bg-gray-100 rounded-lg shadow-md">
+      <div className="container mx-4 my-5 px-4 py-2 bg-gray-100 rounded-lg shadow-md">
         <p className="text-lg font-bold">
           {name || "Non disponible"} {lastName || "Non disponible"}
         </p>
@@ -49,6 +50,10 @@ const Profile: React.FC = () => {
           <strong>Code postal :</strong> {zipCode || "Non disponible"}
         </p>
       </div>
+      <br/>
+      <UserByIdActivityList />
+      <br/>
+      <div className="border border-slate-500 rounded-md p-4 m-4">
       <label className="block my-3">
         <span className="text-gray-700 font-bold">Type de relation :</span>
         <select
@@ -67,6 +72,7 @@ const Profile: React.FC = () => {
       >
         Ajouter en tant que {relation}
       </button>
+      </div>
     </>
   );
 };
