@@ -36,12 +36,11 @@ let Post: React.FC = () => {
 
     const handleGetActivityByRessourceId = React.useCallback(async () => {
       try {
-        await setActivity(await getActivityByRessourceId(postId));
-      
-        console.log('activity :', activity);
-        setToggleShare(activity[0].share);
-        setToggleLike(activity[0].favorite);
-        setToggleBlock(activity[0].block);
+        const activity = await getActivityByRessourceId(postId)
+        setActivity(activity);
+        setToggleShare(!activity[0].share);
+        setToggleLike(!activity[0].favorite);
+        setToggleBlock(!activity[0].block);
       } catch (error) {
         console.error(error);
     }

@@ -1,19 +1,20 @@
 export default interface PostListType {
-    content: [{
-        access: string 
-        catalogue: [{
-            id: number, 
-            category: string
-        }]
-        comments: string | null
-        id: number 
-        value: string
-    }]
-    last: boolean,
-    pageNo: number,
-    pageSize: number,
-    totalElements: number,
-    totalPages: number,
+  content?: Array<{
+    access: string;
+    catalogue: Array<{
+      id: number;
+      category: string;
+    }>;
+    comments: string | null;
+    id: number;
+    value: string;
+  }>;
+  last: boolean;
+  pageNo: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  length?: number;
 }
 
 export default interface PostType {

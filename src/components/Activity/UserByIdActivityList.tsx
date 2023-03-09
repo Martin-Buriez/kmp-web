@@ -108,6 +108,11 @@ const UserByIdActivityList: React.FC = () => {
       </div>
       {toggleCreatedActivities && (
         <>
+        {createdActivities.length === 0 && (
+        <div className="mt-3">
+            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Pas de postes disponibles</span>
+        </div>
+        )}
         <ul>
           {createdActivities.map((createdActivity) => (
               <div key={createdActivity.id} className="px-4 py-3">

@@ -15,6 +15,7 @@ import CreateNewCatalogue from './components/Catalogue/CreateNewCatalogue';
 import CatalogueList from './components/Catalogue/CatalogueList';
 import Comment from "./components/Comments/Comment";
 import TestActivityRequests from './components/TestActivityRequests';
+import PostListByRelation from './components/Posts/PostListByRelation';
 
 
 
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         <Route path='/post/add' element={<CreateNewPost/>} />
         <Route path='/post/:id' element={<Post/>} />
         <Route path='/post' element={<PostList/>} />
+        <Route path='/posts' element={<PostListByRelation/>} />
         <Route path='/search' element={<Search/>} />
         <Route path='/users/:id' element={<User/>} />
         <Route path='/post/:id/comment/:id' element={<Comment/>}></Route> 

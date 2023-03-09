@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { getAllRessources } from "../../services/ressources.service";
 import PostListType from "../../types/post.type";
-import Navbar from "../Navbar";
 import CreateNewPost from "./CreateNewPost";
 
 let PostList: React.FC = () => {
@@ -15,7 +14,6 @@ let PostList: React.FC = () => {
   const handleGetPosts = React.useCallback(async () => {
     try {
         setPosts(await getAllRessources())
-        console.log(posts);
     } catch (error) {
         console.error(error);
     }
@@ -31,7 +29,7 @@ let PostList: React.FC = () => {
         </div>
         <div className="border-t border-gray-200">
           <div className="divide-y divide-gray-200">
-            {posts && posts.content.map(post =>
+          {posts && posts.content?.map((post) => (
               <div key={post.id} className="px-4 py-3">
                 <div className="flex items-center">
                 </div>
@@ -46,7 +44,7 @@ let PostList: React.FC = () => {
                   <a href={`post/${post.id}`} className="text-sm text-indigo-600 hover:text-indigo-900">Voir ce post</a>
                 </div>
               </div>
-            )}
+           ))}
           </div>
         </div>
       </div>
