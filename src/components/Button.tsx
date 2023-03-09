@@ -45,7 +45,7 @@ function Button({ name, value }: ButtonProps) {
           {logoName({name})}
         </div>
       </Link>
-      <Link to={`/${(name === "Home") ? "" : name}`} className="text-gray-800 font-medium text-lg">{value}</Link>
+      <Link to={`/${(name === "Home") ? "" : name}`} className="text-gray-800 font-medium text-lg lg:block hidden">{value}</Link>
     </div>
   );
 }
