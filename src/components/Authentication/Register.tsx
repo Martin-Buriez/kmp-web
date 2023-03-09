@@ -6,6 +6,7 @@ import IUser from "../../types/user.type";
 import { register } from "../../services/auth.service";
 import RegisterInput from "./RegisterInput";
 import UserType from "../../types/user.type";
+import { Navigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
@@ -39,6 +40,14 @@ const Register: React.FC = () => {
     email: Yup.string()
       .email("Cet email n'est pas valide.")
       .required("Ce champ est requis"),
+    zipCode: Yup.string()
+      .test(
+        "len",
+        "Le nom doit contenir 2 caractères.",
+        (val: any) =>
+          val &&
+          val.toString().length === 2
+      ),
     password: Yup.string()
       .test(
         "len",
@@ -58,6 +67,7 @@ const Register: React.FC = () => {
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
+        Navigate({to: "/login"})
       },
       (error) => {
         const resMessage =
@@ -91,7 +101,7 @@ const Register: React.FC = () => {
                 <>
                   <RegisterInput value="Prénom" name="name" type="string"/>
                   <RegisterInput value="Nom" name="lastName" type="string"/>
-                  <RegisterInput value="Date de naissance" name="birthday" type="string"/>
+                  <RegisterInput value="Date de naissance" name="birthday" type="date"/>
                   <RegisterInput value="Email" name="email" type="string"/>
                   <RegisterInput value="Adresse" name="address" type="string"/>
                   <RegisterInput value="Ville" name="city" type="string"/>

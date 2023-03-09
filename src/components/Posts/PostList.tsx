@@ -15,6 +15,7 @@ let PostList: React.FC = () => {
   const handleGetPosts = React.useCallback(async () => {
     try {
         setPosts(await getAllRessources())
+        console.log(posts);
     } catch (error) {
         console.error(error);
     }

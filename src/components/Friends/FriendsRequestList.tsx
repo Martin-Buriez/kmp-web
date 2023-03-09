@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import { getFriends, getFriendsByRelation, getFriendsRequest, postAcceptFriendRequest, postFriendRequest } from "../../services/friends.service";
+import { Navigate, useNavigate } from "react-router-dom";
+import { getFriendsRequest, postAcceptFriendRequest } from "../../services/friends.service";
 import { Relation } from "../../types/relation.type";
 
 let FriendsRequestList: React.FC = () => {
 
   let [friendsRequests, setFriendsRequests] = React.useState<any[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(()=> {
     handleGetFriendsRequest();
@@ -19,12 +22,10 @@ let FriendsRequestList: React.FC = () => {
   }, []);
 
   const handlePostAcceptFriendRequest = React.useCallback(async (userId: number, relation: Relation) => {
-    try {
-        setFriendsRequests(await postAcceptFriendRequest(userId , relation))
-    } catch (error) {
-        console.error(error);
-    }
-  }, []);
+      setFriendsRequests(await postAcceptFriendRequest(userId, relation)) 
+      navigate('/Account')
+      window.location.reload();
+  },[]);
 
   return (
     <>

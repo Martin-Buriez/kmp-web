@@ -9,6 +9,7 @@ import { GrTrash } from "react-icons/gr";
 import { AiFillBook, AiFillEdit, AiFillHeart, AiFillStop, AiOutlineBook, AiOutlineEdit, AiOutlineHeart, AiOutlineStop } from "react-icons/ai";
 import CatalogueType from "../../types/catalogue.type";
 import { getAllCatalogues } from "../../services/catalogues.service";
+import { getActivityByRessourceId } from "../../services/activity.service";
 
 let Post: React.FC = () => {
 
@@ -20,6 +21,7 @@ let Post: React.FC = () => {
     const [toggleLike, setToggleLike] = React.useState<boolean>(true);
     const [toggleBlock, setToggleBlock] = React.useState<boolean>(true);
     const [catalogues, setCatalogues] = React.useState<CatalogueType[]>();
+    const [activity, setActivity] = React.useState<any>();
 
 
     let url = window.location.pathname;
@@ -27,8 +29,22 @@ let Post: React.FC = () => {
 
     useEffect(()=> {
       handleGetPostById();
+      handleGetActivityByRessourceId();
       handleViewRessource();
       handleGetAllCatalogues();
+    }, []);
+
+    const handleGetActivityByRessourceId = React.useCallback(async () => {
+      try {
+        await setActivity(await getActivityByRessourceId(postId));
+      
+        console.log('activity :', activity);
+        setToggleShare(activity[0].share);
+        setToggleLike(activity[0].favorite);
+        setToggleBlock(activity[0].block);
+      } catch (error) {
+        console.error(error);
+    }
     }, []);
   
     const handleGetAllCatalogues = React.useCallback(async () => {
@@ -44,9 +60,12 @@ let Post: React.FC = () => {
       handleShareRessource(toggleShare);
     };
 
-    const handleToggleLike = () => {
+    const handleToggleLike =async  () => {
+      handleGetActivityByRessourceId();
       setToggleLike(!toggleLike);
       handleLikeRessource(toggleLike);
+      handleGetActivityByRessourceId();
+
     };
 
     const handleToggleBlock = () => {

@@ -16,6 +16,7 @@ let PostListByCatalogueId: React.FC = () => {
   const handleGetPostsByCategoryId = React.useCallback(async () => {
     try {
         setPosts(await getRessourceByCategoryId(catalogueId))
+        console.log(posts);
     } catch (error) {
         console.error(error);
     }
@@ -28,7 +29,6 @@ let PostListByCatalogueId: React.FC = () => {
             <div key={post.id} className="bg-white rounded-lg overflow-hidden shadow-md">
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{post.value}</div>
-                <div className="text-gray-700 text-base">{post.catalogue[0].category}</div>
                 <div className="text-gray-700 text-base">{post.access}</div>
                 <div className="mt-4">
                   <a href={`post/${post.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

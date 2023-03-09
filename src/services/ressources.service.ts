@@ -27,12 +27,31 @@ export const getRessourceById = async (ressouceId: number): Promise<PostType> =>
 
 export const getRessourceByCategoryId = async (categoryId: number): Promise<PostType> => {
   return axios
-    .get((API_URL + "/" + "category" + "/" + categoryId), (headersConfig))
+    .get((API_URL + "/category/" + categoryId), (headersConfig))
     .then((response) => {
       JSON.stringify(response.data)
       return response.data;
     }); 
 };
+
+export const getRessourceByRelation = async (relation: string): Promise<PostType> => {
+  return axios
+    .get((API_URL + "/relation/" + relation), (headersConfig))
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
+export const getRessourceByUserId = async (id: number): Promise<any[]> => {
+  return axios
+    .get((API_URL + "/user/" + id), (headersConfig))
+    .then((response) => {
+      JSON.stringify(response.data)
+      return response.data;
+    }); 
+};
+
 
 export const postRessource = async (catalogId: number, access: Relation | 'Veuillez entrer un accès', content: string): Promise<any> => { 
   const data = { "access": access, "value": content };
