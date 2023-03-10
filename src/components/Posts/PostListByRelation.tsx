@@ -1,36 +1,76 @@
 import React, { useEffect } from "react";
 import { getRessourceByRelation } from "../../services/ressources.service";
-import PostListType from "../../types/post.type";
-import CreateNewPost from "./CreateNewPost";
 
-let PostList: React.FC = () => {
-  let [posts, setPosts] = React.useState<PostListType>();
+let PostListRelation: React.FC = () => {
+  let [postsFamille, setPostsFamille] = React.useState<any>();
+  let [postsAmi, setPostsAmi] = React.useState<any>();
+  let [postsConnaissance, setPostsConnaissance] = React.useState<any>();
+  let [togglePostsFamille, setTogglePostsFamille] = React.useState<boolean>(false);
+  let [togglePostsAmi, setTogglePostsAmi] = React.useState<boolean>(false);
+  let [togglePostsConnaissance, setTogglePostsConnaissance] = React.useState<boolean>(false);
 
   useEffect(() => {
-    handleGetPostsByRelation();
+    handleGetPostsByRelationFamille();
+    handleGetPostsByRelationAmi();
+    handleGetPostsByRelationConnaissance();
   }, []);
 
-  const handleGetPostsByRelation = React.useCallback(async () => {
+  const handleTogglePostsFamille = () => {
+    setTogglePostsFamille(!togglePostsFamille);
+  };
+
+  const handleTogglePostsAmi = () => {
+    setTogglePostsAmi(!togglePostsAmi);
+  };
+
+  const handleTogglePostsConnaissance = () => {
+    setTogglePostsConnaissance(!togglePostsConnaissance);
+  };
+
+  const handleGetPostsByRelationConnaissance = React.useCallback(async () => {
     try {
       const PostList = await getRessourceByRelation('connaissance');
       console.log(PostList);
-      setPosts(PostList);
+      setPostsConnaissance(PostList);
     } catch (error) {
       console.error(error);
     }
   }, []);
 
-  return (
-    <>
-      <div className="border border-slate-500 rounded-md p-4 m-4">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
-            Posts
-          </h3>
-        </div>
+  const handleGetPostsByRelationAmi = React.useCallback(async () => {
+    try {
+      const PostList = await getRessourceByRelation('ami');
+      console.log(PostList);
+      setPostsAmi(PostList);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  const handleGetPostsByRelationFamille = React.useCallback(async () => {
+    try {
+      const PostList = await getRessourceByRelation('famille');
+      console.log(PostList);
+      setPostsFamille(PostList);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+
+  const renderPostList = (posts: any[]) => {
+    if (posts.length === 0) {
+        return (
+            <div className="mt-3">
+              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Pas de postes disponibles</span>
+            </div>
+          );
+    }
+    return (
+      <>
         <div className="border-t border-gray-200">
           <div className="divide-y divide-gray-200">
-            {posts && posts.content?.map((post) => (
+            {posts && posts?.map((post: { id: React.Key | null | undefined; value: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; catalogue: { category: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }[]; access: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
               <div key={post.id} className="px-4 py-3">
                 <div className="flex items-center"></div>
                 <div className="mt-3">
@@ -56,13 +96,55 @@ let PostList: React.FC = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div className="mt-4">
-        <CreateNewPost />
-      </div>
     </>
+    );
+  };
+
+
+  return (
+    <>
+    <div className="border border-slate-500 rounded-md p-4 m-4">
+    <div className="mt-3">
+      <h2><b>Posts de vos connaissances :</b></h2>
+    </div>
+    <div className="mt-3 flex justify-end">
+      <button className="text-sm text-indigo-600 hover:text-indigo-900" onClick={handleTogglePostsConnaissance}>Voir</button>
+    </div>
+    {togglePostsConnaissance && (
+      <>
+      {renderPostList(postsConnaissance)}
+      </>
+    )}
+  </div>
+  <div className="border border-slate-500 rounded-md p-4 m-4">
+    <div className="mt-3">
+      <h2><b>Posts de vos amis :</b></h2>
+    </div>
+    <div className="mt-3 flex justify-end">
+      <button className="text-sm text-indigo-600 hover:text-indigo-900" onClick={handleTogglePostsAmi}>Voir</button>
+    </div>
+    {togglePostsAmi && (
+    <>
+      {renderPostList(postsAmi)}
+    </>
+    )}
+  </div>
+  <div className="border border-slate-500 rounded-md p-4 m-4">
+    <div className="mt-3">
+      <h2><b>Posts de votre famille :</b></h2>
+    </div>
+    <div className="mt-3 flex justify-end">
+      <button className="text-sm text-indigo-600 hover:text-indigo-900" onClick={handleTogglePostsFamille}>Voir</button>
+    </div>
+    {togglePostsFamille && (
+    <>
+      {renderPostList(postsFamille)}
+    </>
+    )}
+  </div>
+  </>
   );
 };
 
 
-export default PostList;
+export default PostListRelation;
